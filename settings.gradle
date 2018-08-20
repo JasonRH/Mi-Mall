@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':rh-annotations', ':rh-compiler', ':rh-core', ':rh-ec'

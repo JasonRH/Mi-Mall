@@ -1,15 +1,20 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 27
+
+
+
     defaultConfig {
-        applicationId "com.example.rh.mi_mall"
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -22,17 +27,14 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
-
-    //因app依赖于ec，ec依赖于core，其余库无需重复引用
-
-    //因为ec Module只有app Module 引用，所以可以使用implementation
-    implementation project(':rh-ec')
-    //注解处理器(annotationProcessor)，自动生成java文件
-    annotationProcessor project(':rh-compiler')
+    //因ec依赖于core，core里已经引入的库不需要在ec中再次引入，
+    //但是app Module也依赖于core中的库，因此不能用implementation，且compile即将过时，现在用api
+    api project(':rh-core')
 }
