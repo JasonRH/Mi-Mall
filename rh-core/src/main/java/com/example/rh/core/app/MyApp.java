@@ -9,11 +9,18 @@ import android.content.Context;
  */
 public final class MyApp {
 
+    /**
+     * 传入Application Context
+     * 开始初始化
+     */
     public static Configurator init(Context context) {
         getConfigurator().getAppConfigs().put(ConfigType.APPLICATION_CONTEXT, context.getApplicationContext());
         return Configurator.getInstance();
     }
 
+    /**
+     * 获取Configurator单例对象
+     */
     private static Configurator getConfigurator() {
         return Configurator.getInstance();
     }
@@ -23,5 +30,12 @@ public final class MyApp {
      */
     public static <T> T getConfiguration(Object key) {
         return getConfigurator().getConfiguration(key);
+    }
+
+    /**
+     * 获取全局Context
+     */
+    public static Context getApplicationContext() {
+        return getConfiguration(ConfigType.APPLICATION_CONTEXT);
     }
 }

@@ -3,6 +3,8 @@ package com.example.rh.mi_mall;
 import android.app.Application;
 
 import com.example.rh.core.app.MyApp;
+import com.example.rh.ec.icon.MyFontAlibabaModule;
+import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
 /**
  * @author RH
@@ -14,6 +16,8 @@ public class MyApplication extends Application {
         super.onCreate();
         MyApp.init(this)
                 .withApiHost("http://127.0.0.1/")
+                .withIcon(new FontAwesomeModule())
+                .withIcon(new MyFontAlibabaModule())
                 .configure();
     }
 }

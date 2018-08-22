@@ -1,5 +1,9 @@
 package com.example.rh.core.app;
 
+import com.joanzapata.iconify.IconFontDescriptor;
+import com.joanzapata.iconify.Iconify;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -9,7 +13,14 @@ import java.util.HashMap;
  * 配置文件的存储和获取
  */
 public class Configurator {
+    /**
+     * 存储全局信息
+     */
     private static final HashMap<Object, Object> APP_CONFIGS = new HashMap<>();
+    /**
+     * 存储图标
+     */
+    private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
 
     private Configurator() {
         APP_CONFIGS.put(ConfigType.CONFIG_READY, false);
@@ -34,17 +45,40 @@ public class Configurator {
     }
 
     /**
-     * 初始化
-     * */
-    public final void configure() {
-        APP_CONFIGS.put(ConfigType.CONFIG_READY, true);
-    }
-
+     * 传入host
+     */
     public final Configurator withApiHost(String host) {
         APP_CONFIGS.put(ConfigType.API_HOST, host);
         return this;
     }
 
+    /**
+     * 添加图标库
+     */
+    public final Configurator withIcon(IconFontDescriptor descriptor) {
+        ICONS.add(descriptor);
+        return this;
+    }
+
+    /**
+     * 完成初始化
+     */
+    public final void configure() {
+        initIcons();
+        APP_CONFIGS.put(ConfigType.CONFIG_READY, true);
+    }
+
+    /**
+     * 初始化图标库
+     */
+    private void initIcons() {
+        if (ICONS.size() > 0) {
+            final Iconify.IconifyInitializer initializer = Iconify.with(ICONS.get(0));
+            for (int i = 1; i < ICONS.size(); i++) {
+                initializer.with(ICONS.get(i));
+            }
+        }
+    }
 
     /**
      * 获取特定的配置信息
