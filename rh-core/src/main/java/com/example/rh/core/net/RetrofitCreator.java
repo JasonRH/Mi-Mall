@@ -3,6 +3,7 @@ package com.example.rh.core.net;
 import com.example.rh.core.app.ConfigType;
 import com.example.rh.core.app.MyApp;
 
+import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -38,5 +39,16 @@ public class RetrofitCreator {
     private static final class RetrofitServiceHolder {
         private static final RetrofitService RETROFIT_SERVICE =
                 RetrofitHolder.RETROFIT_CLIENT.create(RetrofitService.class);
+    }
+
+    /**
+     * 使用时记得clear
+     */
+    public static WeakHashMap<String, Object> getParams() {
+        return ParamsHolder.PARAMS;
+    }
+
+    private static final class ParamsHolder {
+        private static final WeakHashMap<String, Object> PARAMS = new WeakHashMap<>();
     }
 }
