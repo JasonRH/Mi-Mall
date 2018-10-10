@@ -30,9 +30,11 @@ public class RetrofitCreator {
     }
 
     private static final class OKHttpHolder {
-        private static final int TIME_OUT = 60;
+        private static final int TIME_OUT = 10;
         private static final OkHttpClient OK_HTTP_CLIENT = new OkHttpClient.Builder()
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
+                //不加这行，连接超时后会再重试一次，实际超时时间为TIME_OUT*2
+                .retryOnConnectionFailure(false)
                 .build();
     }
 

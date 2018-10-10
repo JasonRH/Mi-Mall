@@ -59,5 +59,7 @@ dependencies {
     api 'com.squareup.okhttp3:okhttp:3.10.0'
     api 'com.squareup.retrofit2:retrofit:2.3.0'
     api 'com.squareup.retrofit2:converter-scalars:2.3.0' //转换器
+    //Loader依赖
+    api 'com.wang.avi:library:2.1.3'
 
 }

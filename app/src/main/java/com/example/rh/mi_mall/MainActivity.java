@@ -9,6 +9,7 @@ import com.example.rh.core.net.RetrofitClient;
 import com.example.rh.core.net.callback.IError;
 import com.example.rh.core.net.callback.IFailure;
 import com.example.rh.core.net.callback.ISuccess;
+import com.example.rh.core.ui.LoaderStyle;
 
 /**
  * @author RH
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private void testRetrofitClient() {
         RetrofitClient.builder()
                 .url("https://www.baidu.com/")
+                .loader(this)
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 })
-                .builder()
+                .build()
                 .get();
     }
 }

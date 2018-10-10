@@ -1,9 +1,12 @@
 package com.example.rh.core.net;
 
+import android.content.Context;
+
 import com.example.rh.core.net.callback.IError;
 import com.example.rh.core.net.callback.IFailure;
 import com.example.rh.core.net.callback.IRequest;
 import com.example.rh.core.net.callback.ISuccess;
+import com.example.rh.core.ui.LoaderStyle;
 
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -16,13 +19,15 @@ import okhttp3.RequestBody;
  * @date 2018/9/28
  */
 public class RetrofitClientBuilder {
-    private String mUrl;
     private Map<String, Object> PARAMS = RetrofitCreator.getParams();
-    private IRequest mIRequest;
-    private ISuccess mISuccess;
-    private IFailure mIFailure;
-    private IError mIError;
-    private RequestBody mBody;
+    private String mUrl = null;
+    private IRequest mIRequest = null;
+    private ISuccess mISuccess = null;
+    private IFailure mIFailure = null;
+    private IError mIError = null;
+    private RequestBody mBody = null;
+    private LoaderStyle mLoaderStyle = null;
+    private Context mContext = null;
 
     public final RetrofitClientBuilder url(String mUrl) {
         this.mUrl = mUrl;
@@ -64,7 +69,20 @@ public class RetrofitClientBuilder {
         return this;
     }
 
-    public final RetrofitClient builder() {
-        return new RetrofitClient(mUrl, PARAMS, mIRequest, mISuccess, mIFailure, mIError, mBody);
+    public final RetrofitClientBuilder loader(Context context) {
+        this.mContext = context;
+        //默认一种Dialog样式
+        this.mLoaderStyle = LoaderStyle.BallClipRotatePulseIndicator;
+        return this;
+    }
+
+    public final RetrofitClientBuilder loader(Context context, LoaderStyle style) {
+        this.mContext = context;
+        this.mLoaderStyle = style;
+        return this;
+    }
+
+    public final RetrofitClient build() {
+        return new RetrofitClient(mUrl, PARAMS, mIRequest, mISuccess, mIFailure, mIError, mBody, mLoaderStyle, mContext);
     }
 }
