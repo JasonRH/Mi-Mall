@@ -7,9 +7,9 @@ package com.example.rh.core.net;
 public enum HttpMethod {
     GET,
     POST,
-    POST_ROM,
+    POST_RAW,
     PUT,
-    PUT_RAM,
+    PUT_RAW,
     DELETE,
     UPLOAD
 }

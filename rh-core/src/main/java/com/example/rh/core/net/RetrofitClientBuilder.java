@@ -8,6 +8,7 @@ import com.example.rh.core.net.callback.IRequest;
 import com.example.rh.core.net.callback.ISuccess;
 import com.example.rh.core.ui.LoaderStyle;
 
+import java.io.File;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -26,6 +27,7 @@ public class RetrofitClientBuilder {
     private IFailure mIFailure = null;
     private IError mIError = null;
     private RequestBody mBody = null;
+    private File file = null;
     private LoaderStyle mLoaderStyle = null;
     private Context mContext = null;
 
@@ -51,6 +53,16 @@ public class RetrofitClientBuilder {
 
     public final RetrofitClientBuilder onRequest(IRequest iRequest) {
         this.mIRequest = iRequest;
+        return this;
+    }
+
+    public final RetrofitClientBuilder file(File file) {
+        this.file = file;
+        return this;
+    }
+
+    public final RetrofitClientBuilder file(String filePath) {
+        this.file = new File(filePath);
         return this;
     }
 
@@ -83,6 +95,6 @@ public class RetrofitClientBuilder {
     }
 
     public final RetrofitClient build() {
-        return new RetrofitClient(mUrl, PARAMS, mIRequest, mISuccess, mIFailure, mIError, mBody, mLoaderStyle, mContext);
+        return new RetrofitClient(mUrl, PARAMS, mIRequest, mISuccess, mIFailure, mIError, mBody, file, mLoaderStyle, mContext);
     }
 }
