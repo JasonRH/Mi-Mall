@@ -20,6 +20,7 @@ import okhttp3.RequestBody;
  * @date 2018/9/28
  */
 public class RetrofitClientBuilder {
+    /**浅拷贝，会改变原对象的值*/
     private Map<String, Object> PARAMS = RetrofitCreator.getParams();
     private String mUrl = null;
     private IRequest mIRequest = null;
@@ -30,6 +31,9 @@ public class RetrofitClientBuilder {
     private File file = null;
     private LoaderStyle mLoaderStyle = null;
     private Context mContext = null;
+    private String mDownloadDir = null;
+    private String mExtension = null;
+    private String mName = null;
 
     public final RetrofitClientBuilder url(String mUrl) {
         this.mUrl = mUrl;
@@ -94,7 +98,28 @@ public class RetrofitClientBuilder {
         return this;
     }
 
+    /**
+     * 下载设置1
+     */
+    public final RetrofitClientBuilder name(String name) {
+        this.mName = name;
+        return this;
+    }
+
+    /**
+     * 下载设置2
+     */
+    public final RetrofitClientBuilder dir(String dir) {
+        this.mDownloadDir = dir;
+        return this;
+    }
+
+    public final RetrofitClientBuilder extension(String extension) {
+        this.mExtension = extension;
+        return this;
+    }
+
     public final RetrofitClient build() {
-        return new RetrofitClient(mUrl, PARAMS, mIRequest, mISuccess, mIFailure, mIError, mBody, file, mLoaderStyle, mContext);
+        return new RetrofitClient(mUrl, PARAMS, mIRequest, mISuccess, mIFailure, mIError, mBody, file, mDownloadDir, mExtension, mName, mLoaderStyle, mContext);
     }
 }

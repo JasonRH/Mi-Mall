@@ -8,10 +8,12 @@ import com.example.rh.core.net.callback.IFailure;
 import com.example.rh.core.net.callback.IRequest;
 import com.example.rh.core.net.callback.ISuccess;
 import com.example.rh.core.net.callback.RequestCallbacks;
+import com.example.rh.core.net.download.DownloadHandler;
 import com.example.rh.core.ui.LoaderStyle;
 import com.example.rh.core.ui.MyLoader;
 
 import java.io.File;
+import java.text.ParseException;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -27,13 +29,28 @@ import retrofit2.Callback;
  */
 public class RetrofitClient {
     private final String URL;
+    /**
+     * 浅拷贝
+     */
     private final WeakHashMap<String, Object> PARAMS = RetrofitCreator.getParams();
     private final IRequest REQUEST;
     private final ISuccess SUCCESS;
     private final IFailure FAILURE;
     private final IError ERROR;
     private final RequestBody BODY;
+    /**
+     * 上传文件
+     */
     private final File FILE;
+    /**
+     * 下载
+     */
+    private final String DOWNLOAD_DIR;
+    private final String EXTENSION;
+    private final String NAME;
+    /**
+     * 进度条样式
+     */
     private final LoaderStyle LOADER_STYLE;
     private final Context CONTEXT;
 
@@ -45,9 +62,13 @@ public class RetrofitClient {
                           IError iError,
                           RequestBody body,
                           File file,
+                          String downloadDir,
+                          String extension,
+                          String name,
                           LoaderStyle style,
                           Context context) {
         this.URL = url;
+        //深拷贝
         PARAMS.putAll(params);
         this.REQUEST = iRequest;
         this.SUCCESS = iSuccess;
@@ -55,6 +76,9 @@ public class RetrofitClient {
         this.ERROR = iError;
         this.BODY = body;
         this.FILE = file;
+        this.DOWNLOAD_DIR = downloadDir;
+        this.EXTENSION = extension;
+        this.NAME = name;
         this.LOADER_STYLE = style;
         this.CONTEXT = context;
     }
@@ -149,6 +173,15 @@ public class RetrofitClient {
                 ERROR,
                 LOADER_STYLE
         );
+    }
+
+    /**
+     * 下载
+     */
+    public final void download() {
+        new DownloadHandler(URL, REQUEST, DOWNLOAD_DIR, EXTENSION, NAME,
+                SUCCESS, FAILURE, ERROR)
+                .handleDownload();
     }
 
 }
