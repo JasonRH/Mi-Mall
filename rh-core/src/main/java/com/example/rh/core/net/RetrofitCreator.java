@@ -2,10 +2,13 @@ package com.example.rh.core.net;
 
 import com.example.rh.core.app.ConfigType;
 import com.example.rh.core.app.MyApp;
+import com.example.rh.core.net.callback.IFailure;
 
+import java.util.ArrayList;
 import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
 
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
@@ -61,7 +64,19 @@ public class RetrofitCreator {
      */
     private static final class OKHttpHolder {
         private static final int TIME_OUT = 10;
-        private static final OkHttpClient OK_HTTP_CLIENT = new OkHttpClient.Builder()
+        private static final OkHttpClient.Builder BUILDER = new OkHttpClient.Builder();
+        private static final ArrayList<Interceptor> INTERCEPTORS = MyApp.getConfiguration(ConfigType.INTERCEPTOR);
+
+        private static OkHttpClient.Builder addInterceptors() {
+            if (INTERCEPTORS != null && !INTERCEPTORS.isEmpty()) {
+                for (Interceptor interceptor : INTERCEPTORS) {
+                    BUILDER.addInterceptor(interceptor);
+                }
+            }
+            return BUILDER;
+        }
+
+        private static final OkHttpClient OK_HTTP_CLIENT = addInterceptors()
                 .connectTimeout(TIME_OUT, TimeUnit.SECONDS)
                 //不加这行，连接超时后会再重试一次，实际超时时间为TIME_OUT*2
                 .retryOnConnectionFailure(false)

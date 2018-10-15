@@ -18,6 +18,10 @@ public enum ConfigType {
     /**
      * 是否初始化
      */
-    CONFIG_READY;
+    CONFIG_READY,
+    /**
+     * 拦截器
+     */
+    INTERCEPTOR
 
 }
