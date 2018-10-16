@@ -11,9 +11,18 @@ import com.example.rh.core.net.RetrofitCreator;
 import com.example.rh.core.net.callback.IError;
 import com.example.rh.core.net.callback.IFailure;
 import com.example.rh.core.net.callback.ISuccess;
+import com.example.rh.core.net_rx.RxRetrofitClient;
+import com.example.rh.core.net_rx.RxRetrofitCreator;
 import com.example.rh.core.ui.LoaderStyle;
 
 import java.util.WeakHashMap;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author RH
@@ -25,9 +34,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        testRetrofitClient();
+        //testRetrofitClient();
+        //onCallRxGet1();
+        onCallRxGet2();
     }
 
+    //TODO:测试网络，可删除
     private void testRetrofitClient() {
         RetrofitClient.builder()
                 .url("http://127.0.0.1/myTest")
@@ -52,5 +64,70 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .build()
                 .get();
+    }
+
+    //TODO:测试 RxJava+Retrofit，方案一（最简洁），可删除
+    private void onCallRxGet1() {
+        final String url = "https://www.baidu.com";
+        final WeakHashMap<String, Object> params = new WeakHashMap<>();
+        final Observable<String> observable = RxRetrofitCreator.getRxRetrofitService().get(url, params);
+        observable.subscribeOn(Schedulers.io())
+                //下载时注意，不能使用主线程
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        Toast.makeText(MyApp.getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    //TODO:测试 RxJava+Retrofit，方案二(采用建造者模式)，可删除
+    private void onCallRxGet2() {
+        final String url = "https://www.baidu.com";
+        RxRetrofitClient
+                .builder()
+                .url(url)
+                .build()
+                .get()
+                .subscribeOn(Schedulers.io())
+                //下载时注意，不能使用主线程
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        Toast.makeText(MyApp.getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }
