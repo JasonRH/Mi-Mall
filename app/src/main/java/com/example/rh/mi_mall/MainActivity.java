@@ -25,13 +25,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Toast.makeText(MyApp.getApplicationContext(), "这是全局Context", Toast.LENGTH_SHORT).show();
-        //testRetrofitClient();
+        testRetrofitClient();
     }
 
     private void testRetrofitClient() {
         RetrofitClient.builder()
-                .url("https://www.baidu.com/")
+                .url("http://127.0.0.1/myTest")
                 .loader(this)
                 .success(new ISuccess() {
                     @Override
