@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+//想要在library中butterknife，必须在每个library module中添加
 apply plugin: 'com.jakewharton.butterknife'
 
 android {
@@ -49,6 +50,7 @@ dependencies {
     api 'me.yokeyword:fragmentation-swipeback:1.3.6'
     //butterknife
     api 'com.jakewharton:butterknife:8.8.1'
+    //想要在library中butterknife，必须在每个library中添加该依赖
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //网络请求依赖
     api 'com.squareup.okio:okio:1.14.0'
@@ -62,4 +64,8 @@ dependencies {
     api 'io.reactivex.rxjava2:rxjava:2.2.2'
     api 'io.reactivex.rxjava2:rxandroid:2.1.0'
     api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    //轮播图
+    api 'com.bigkoo:ConvenientBanner:2.1.4'
+    //JSON依赖Android版
+    api 'com.alibaba:fastjson:1.1.70.android'
 }

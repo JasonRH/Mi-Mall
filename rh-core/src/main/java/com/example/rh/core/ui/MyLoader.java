@@ -5,9 +5,8 @@ import android.support.v7.app.AppCompatDialog;
 import android.view.Gravity;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.GridView;
 
-import com.example.rh.core.utils.DimenUtils;
+import com.example.rh.core.utils.dimen.DimenUtils;
 import com.example.rh_core.R;
 import com.wang.avi.AVLoadingIndicatorView;
 

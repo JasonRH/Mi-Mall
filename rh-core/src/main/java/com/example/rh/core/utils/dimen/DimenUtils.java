@@ -1,4 +1,4 @@
-package com.example.rh.core.utils;
+package com.example.rh.core.utils.dimen;
 
 import android.content.res.Resources;
 import android.util.DisplayMetrics;

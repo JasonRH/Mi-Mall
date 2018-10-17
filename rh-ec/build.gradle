@@ -1,4 +1,7 @@
 apply plugin: 'com.android.library'
+//想要在library中butterknife，必须在每个library module中添加
+apply plugin: 'com.jakewharton.butterknife'
+
 
 android {
     compileSdkVersion 25
@@ -37,4 +40,8 @@ dependencies {
     //因ec依赖于core，core里已经引入的库不需要在ec中再次引入，
     //但是app Module也依赖于core中的库，因此不能用implementation，且compile即将过时，现在用api
     api project(':rh-core')
+
+    //想要在library中butterknife，必须在每个library中添加该依赖
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+
 }

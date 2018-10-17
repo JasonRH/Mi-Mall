@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.rh.core.activity.BaseActivity;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation_swipeback.SwipeBackFragment;
@@ -27,6 +29,8 @@ public abstract class BaseFragment extends SwipeBackFragment {
             rootView = inflater.inflate((Integer) setLayout(), container, false);
         } else if (setLayout() instanceof View) {
             rootView = (View) setLayout();
+        }else {
+            throw new ClassCastException("type of setLayout() must be int or View!");
         }
 
         if (rootView != null) {
@@ -40,6 +44,9 @@ public abstract class BaseFragment extends SwipeBackFragment {
 
     protected abstract void onBindView(Bundle savedInstanceState, View rootView);
 
+    /*public final BaseActivity getBaseActivity(){
+        return (BaseActivity) _mActivity;
+    }*/
 
     @Override
     public void onDestroyView() {
