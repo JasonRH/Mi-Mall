@@ -7,6 +7,8 @@ import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.example.rh.core.fragment.BaseAppFragment;
 import com.example.rh.core.ui.launcher.LauncherHolderCreator;
+import com.example.rh.core.ui.launcher.ScrollLauncherTag;
+import com.example.rh.core.utils.storage.MyPreference;
 import com.example.rh.ec.R;
 
 import java.util.ArrayList;
@@ -17,7 +19,10 @@ import java.util.ArrayList;
  */
 public class LauncherScrollFragment extends BaseAppFragment implements OnItemClickListener {
     private ConvenientBanner<Integer> mConvenientBanner = null;
-    private static final ArrayList<Integer> images = new ArrayList<>();
+    /**
+     * 此处ArrayList不能被定义为静态，否则多次退出进入时，images会叠加
+     */
+    private final ArrayList<Integer> images = new ArrayList<>();
 
     private void initBanner() {
         images.add(R.mipmap.launcher_01);
@@ -48,6 +53,10 @@ public class LauncherScrollFragment extends BaseAppFragment implements OnItemCli
 
     @Override
     public void onItemClick(int position) {
-
+        //如果点击最后一张图
+        if (position == images.size() - 1) {
+            MyPreference.setAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name(), true);
+            //检查用户是否已经登录
+        }
     }
 }
