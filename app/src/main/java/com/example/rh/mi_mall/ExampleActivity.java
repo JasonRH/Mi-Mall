@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import com.example.rh.core.activity.BaseActivity;
 import com.example.rh.core.fragment.BaseAppFragment;
 import com.example.rh.ec.launcher.LauncherFragment;
+import com.example.rh.ec.sign.SignUpFragment;
 
 /**
  * @author RH
@@ -24,6 +25,6 @@ public class ExampleActivity extends BaseActivity {
 
     @Override
     protected BaseAppFragment setRootDelegate() {
-        return new LauncherFragment();
+        return new SignUpFragment();
     }
 }
