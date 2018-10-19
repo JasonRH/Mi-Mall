@@ -2,24 +2,20 @@ package com.example.rh.mi_mall;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.example.rh.core.app.MyApp;
 import com.example.rh.core.net.RetrofitClient;
-import com.example.rh.core.net.RetrofitCreator;
 import com.example.rh.core.net.callback.IError;
 import com.example.rh.core.net.callback.IFailure;
 import com.example.rh.core.net.callback.ISuccess;
 import com.example.rh.core.net_rx.RxRetrofitClient;
 import com.example.rh.core.net_rx.RxRetrofitCreator;
-import com.example.rh.core.ui.LoaderStyle;
 
 import java.util.WeakHashMap;
 
 import io.reactivex.Observable;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;

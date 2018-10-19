@@ -9,11 +9,10 @@ import com.example.rh.core.net.callback.IRequest;
 import com.example.rh.core.net.callback.ISuccess;
 import com.example.rh.core.net.callback.RequestCallbacks;
 import com.example.rh.core.net.download.DownloadHandler;
-import com.example.rh.core.ui.LoaderStyle;
-import com.example.rh.core.ui.MyLoader;
+import com.example.rh.core.ui.loader.LoaderStyle;
+import com.example.rh.core.ui.loader.MyLoader;
 
 import java.io.File;
-import java.text.ParseException;
 import java.util.Map;
 import java.util.WeakHashMap;
 

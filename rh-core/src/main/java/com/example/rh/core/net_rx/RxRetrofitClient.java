@@ -4,8 +4,8 @@ import android.content.Context;
 
 import com.example.rh.core.net.HttpMethod;
 import com.example.rh.core.net.RetrofitCreator;
-import com.example.rh.core.ui.LoaderStyle;
-import com.example.rh.core.ui.MyLoader;
+import com.example.rh.core.ui.loader.LoaderStyle;
+import com.example.rh.core.ui.loader.MyLoader;
 
 import java.io.File;
 import java.util.Map;

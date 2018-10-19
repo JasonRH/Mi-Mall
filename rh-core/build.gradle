@@ -64,8 +64,12 @@ dependencies {
     api 'io.reactivex.rxjava2:rxjava:2.2.2'
     api 'io.reactivex.rxjava2:rxandroid:2.1.0'
     api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+
     //轮播图
     api 'com.bigkoo:ConvenientBanner:2.1.4'
+    //轮播图需要额外导入recyclerview
+    api 'com.android.support:recyclerview-v7:25.4.0'
+
     //JSON依赖Android版
     api 'com.alibaba:fastjson:1.1.70.android'
 }

@@ -1,4 +1,4 @@
-package com.example.rh.core.ui;
+package com.example.rh.core.ui.loader;
 
 /**
  * @author RH

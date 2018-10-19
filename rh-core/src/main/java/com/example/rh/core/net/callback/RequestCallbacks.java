@@ -2,8 +2,8 @@ package com.example.rh.core.net.callback;
 
 import android.util.Log;
 
-import com.example.rh.core.ui.LoaderStyle;
-import com.example.rh.core.ui.MyLoader;
+import com.example.rh.core.ui.loader.LoaderStyle;
+import com.example.rh.core.ui.loader.MyLoader;
 
 import retrofit2.Call;
 import retrofit2.Callback;

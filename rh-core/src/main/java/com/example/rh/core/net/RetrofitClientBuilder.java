@@ -6,7 +6,7 @@ import com.example.rh.core.net.callback.IError;
 import com.example.rh.core.net.callback.IFailure;
 import com.example.rh.core.net.callback.IRequest;
 import com.example.rh.core.net.callback.ISuccess;
-import com.example.rh.core.ui.LoaderStyle;
+import com.example.rh.core.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.Map;

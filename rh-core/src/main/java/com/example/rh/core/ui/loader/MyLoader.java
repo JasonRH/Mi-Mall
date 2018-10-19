@@ -1,4 +1,4 @@
-package com.example.rh.core.ui;
+package com.example.rh.core.ui.loader;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatDialog;
