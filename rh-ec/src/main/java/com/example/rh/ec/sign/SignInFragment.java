@@ -1,8 +1,8 @@
 package com.example.rh.ec.sign;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
@@ -27,6 +27,16 @@ public class SignInFragment extends BaseAppFragment {
     @BindView(R2.id.edit_sign_in_password)
     TextInputEditText mPassword = null;
 
+    private ISignListener mISignListener = null;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ISignListener) {
+            mISignListener = (ISignListener) activity;
+        }
+    }
+
     @Override
     protected Object setLayout() {
         return R.layout.fragment_sign_in;
@@ -48,12 +58,11 @@ public class SignInFragment extends BaseAppFragment {
                         @Override
                         public void onSuccess(String response) {
                             MyLogger.json("USER_PROFILE", response);
-                            SignHandler.onSignUp(response);
+                            SignHandler.onSignIn(response, mISignListener);
                         }
                     })
                     .build()
                     .post();
-            Toast.makeText(getContext(), "验证通过", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -63,7 +72,7 @@ public class SignInFragment extends BaseAppFragment {
 
     @OnClick(R2.id.tv_sign_up_link)
     void onClickLink() {
-        start(new SignUpFragment());
+        startWithPop(new SignUpFragment());
     }
 
     private boolean checkForm() {

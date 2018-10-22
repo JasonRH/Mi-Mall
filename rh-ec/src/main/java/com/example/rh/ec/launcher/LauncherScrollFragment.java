@@ -1,12 +1,17 @@
 package com.example.rh.ec.launcher;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
+import com.example.rh.core.app.user.AccountManager;
+import com.example.rh.core.app.user.IUserChecker;
 import com.example.rh.core.fragment.BaseAppFragment;
+import com.example.rh.core.ui.launcher.ILauncherListener;
 import com.example.rh.core.ui.launcher.LauncherHolderCreator;
+import com.example.rh.core.ui.launcher.OnLauncherFinishTag;
 import com.example.rh.core.ui.launcher.ScrollLauncherTag;
 import com.example.rh.core.utils.storage.MyPreference;
 import com.example.rh.ec.R;
@@ -23,6 +28,8 @@ public class LauncherScrollFragment extends BaseAppFragment implements OnItemCli
      * 此处ArrayList不能被定义为静态，否则多次退出进入时，images会叠加
      */
     private final ArrayList<Integer> images = new ArrayList<>();
+    private ILauncherListener mILauncherListener = null;
+
 
     private void initBanner() {
         images.add(R.mipmap.launcher_01);
@@ -38,6 +45,15 @@ public class LauncherScrollFragment extends BaseAppFragment implements OnItemCli
                 .setOnItemClickListener(this)
                 //是否可循环
                 .setCanLoop(false);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        //将Activity与接口关联
+        if (activity instanceof ILauncherListener) {
+            mILauncherListener = (ILauncherListener) activity;
+        }
     }
 
     @Override
@@ -57,6 +73,21 @@ public class LauncherScrollFragment extends BaseAppFragment implements OnItemCli
         if (position == images.size() - 1) {
             MyPreference.setAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name(), true);
             //检查用户是否已经登录
+            AccountManager.checkAccount(new IUserChecker() {
+                @Override
+                public void onSignIn() {
+                    if (mILauncherListener != null) {
+                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
+                    }
+                }
+
+                @Override
+                public void onNotSignIn() {
+                    if (mILauncherListener != null) {
+                        mILauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
+                    }
+                }
+            });
         }
     }
 }
