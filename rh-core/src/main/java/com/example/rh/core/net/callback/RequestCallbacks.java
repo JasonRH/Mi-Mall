@@ -1,6 +1,5 @@
 package com.example.rh.core.net.callback;
 
-import android.util.Log;
 
 import com.example.rh.core.ui.loader.LoaderStyle;
 import com.example.rh.core.ui.loader.MyLoader;
@@ -19,7 +18,7 @@ public class RequestCallbacks implements Callback<String> {
     private final IFailure FAILURE;
     private final IError ERROR;
     private final LoaderStyle LOADER_STYLE;
-    //使用静态，避免内存泄露
+    /**使用静态，避免内存泄露*/
     private static final android.os.Handler hanlder = new android.os.Handler();
 
     public RequestCallbacks(IRequest request, ISuccess success, IFailure failure, IError error, LoaderStyle style) {
@@ -33,7 +32,6 @@ public class RequestCallbacks implements Callback<String> {
 
     @Override
     public void onResponse(Call<String> call, Response<String> response) {
-        Log.e("get", "onResponse: ");
         if (response.isSuccessful()) {
             if (call.isExecuted()) {
                 if (SUCCESS != null) {
@@ -50,7 +48,6 @@ public class RequestCallbacks implements Callback<String> {
 
     @Override
     public void onFailure(Call<String> call, Throwable t) {
-        Log.e("get", "onFailure: ");
         if (FAILURE != null) {
             FAILURE.onFailure();
         }

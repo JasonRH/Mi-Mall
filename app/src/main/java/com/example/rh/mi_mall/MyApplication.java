@@ -4,8 +4,12 @@ import android.app.Application;
 
 import com.example.rh.core.app.MyApp;
 import com.example.rh.core.net.interceptors.DebugInterceptor;
+import com.example.rh.ec.database.DatabaseManager;
 import com.example.rh.ec.icon.MyFontAlibabaModule;
+import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 
 /**
  * @author RH
@@ -21,5 +25,22 @@ public class MyApplication extends Application {
                 .withIcon(new MyFontAlibabaModule())
                 .withInterceptor(new DebugInterceptor("myTest", R.raw.test))
                 .configure();
+
+        //初始化logger
+        Logger.addLogAdapter(new AndroidLogAdapter());
+        //初始化数据库
+        DatabaseManager.getInstance().init(this);
+
+        initStetho();
+    }
+
+    //初始化Stetho，数据库查看工具
+    private void initStetho() {
+        Stetho.initialize(
+                Stetho.newInitializerBuilder(this)
+                        .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                        .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+                        .build()
+        );
     }
 }

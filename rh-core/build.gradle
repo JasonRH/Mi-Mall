@@ -5,8 +5,6 @@ apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion 27
 
-
-
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 27
@@ -77,4 +75,8 @@ dependencies {
     api 'com.alibaba:fastjson:1.1.70.android'
     //Log
     api 'com.orhanobut:logger:2.2.0'
+    //数据库依赖
+    api 'org.greenrobot:greendao-generator:3.2.2'
+    api 'org.greenrobot:greendao:3.2.2'
+    //api 'net.zetetic:android-database-sqlcipher:3.5.7@aar'//给数据库加密
 }

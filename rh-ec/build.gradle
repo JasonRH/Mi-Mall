@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 //想要在library中butterknife，必须在每个library module中添加
 apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'org.greenrobot.greendao'
 
 
 android {

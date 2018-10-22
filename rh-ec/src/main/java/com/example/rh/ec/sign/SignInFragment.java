@@ -2,11 +2,15 @@ package com.example.rh.ec.sign;
 
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.rh.core.fragment.BaseAppFragment;
+import com.example.rh.core.net.RetrofitClient;
+import com.example.rh.core.net.callback.ISuccess;
+import com.example.rh.core.utils.log.MyLogger;
 import com.example.rh.ec.R;
 import com.example.rh.ec.R2;
 
@@ -36,17 +40,19 @@ public class SignInFragment extends BaseAppFragment {
     @OnClick(R2.id.btn_sign_in)
     void onClickSignUp() {
         if (checkForm()) {
-            /*RetrofitClient.builder()
-                    .url("")
-                    .params("","")
+            RetrofitClient.builder()
+                    .url("http://10.203.70.146:8080/myservlet/json/mall/user.json")
+                    .params("email", mEmail.getText().toString())
+                    .params("password", mPassword.getText().toString())
                     .success(new ISuccess() {
                         @Override
                         public void onSuccess(String response) {
-
+                            MyLogger.json("USER_PROFILE", response);
+                            SignHandler.onSignUp(response);
                         }
                     })
                     .build()
-                    .post();*/
+                    .post();
             Toast.makeText(getContext(), "验证通过", Toast.LENGTH_SHORT).show();
         }
     }

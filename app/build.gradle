@@ -28,11 +28,13 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
-
     //因app依赖于ec，ec依赖于core，其余库无需重复引用
-
     //因为ec Module只有app Module 引用，所以可以使用implementation
     implementation project(':rh-ec')
     //注解处理器(annotationProcessor)，自动生成java文件
     annotationProcessor project(':rh-compiler')
+
+    //测试使用，查看数据库
+    implementation 'com.facebook.stetho:stetho:1.5.0'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
 }
