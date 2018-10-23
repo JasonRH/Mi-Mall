@@ -1,3 +1,5 @@
+import java.security.Provider
+
 apply plugin: 'com.android.application'
 
 android {
@@ -21,6 +23,7 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+        encoding "UTF-8"
     }
 }
 
@@ -31,6 +34,10 @@ dependencies {
     //因app依赖于ec，ec依赖于core，其余库无需重复引用
     //因为ec Module只有app Module 引用，所以可以使用implementation
     implementation project(':rh-ec')
+
+    //只在编译时有效，不会参与打包
+    compileOnly project(':rh-annotations')
+
     //注解处理器(annotationProcessor)，自动生成java文件
     annotationProcessor project(':rh-compiler')
 
