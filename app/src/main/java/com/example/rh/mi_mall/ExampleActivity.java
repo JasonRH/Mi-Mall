@@ -11,6 +11,7 @@ import com.example.rh.core.fragment.BaseAppFragment;
 import com.example.rh.core.ui.launcher.ILauncherListener;
 import com.example.rh.core.ui.launcher.OnLauncherFinishTag;
 import com.example.rh.ec.launcher.LauncherFragment;
+import com.example.rh.ec.main.EcBottomFragment;
 import com.example.rh.ec.sign.ISignListener;
 import com.example.rh.ec.sign.SignInFragment;
 
@@ -53,7 +54,7 @@ public class ExampleActivity extends BaseActivity implements
         switch (tag) {
             case SIGNED:
                 //用户已经登录
-                startWithPop(new ExampleFragment());
+                startWithPop(new EcBottomFragment());
                 break;
             case NOT_SIGNED:
                 //用户没登录,启动登录Fragment，并将自身从返回栈弹出
