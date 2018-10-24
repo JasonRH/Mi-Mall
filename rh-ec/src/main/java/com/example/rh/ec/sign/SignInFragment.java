@@ -11,6 +11,8 @@ import com.example.rh.core.fragment.BaseAppFragment;
 import com.example.rh.core.net.RetrofitClient;
 import com.example.rh.core.net.callback.ISuccess;
 import com.example.rh.core.utils.log.MyLogger;
+import com.example.rh.core.wechat.MyWeChat;
+import com.example.rh.core.wechat.callbacks.IWeChatSignInCallback;
 import com.example.rh.ec.R;
 import com.example.rh.ec.R2;
 
@@ -68,6 +70,12 @@ public class SignInFragment extends BaseAppFragment {
 
     @OnClick(R2.id.icon_sign_in_weChat)
     void onClickWeChat() {
+        MyWeChat.getInstance().onSignSuccess(new IWeChatSignInCallback() {
+            @Override
+            public void onSignInSuccess(String userInfo) {
+                //微信登录成功后返回用户数据
+            }
+        }).signIn();
     }
 
     @OnClick(R2.id.tv_sign_up_link)

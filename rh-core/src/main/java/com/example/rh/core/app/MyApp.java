@@ -21,7 +21,7 @@ public final class MyApp {
     /**
      * 获取Configurator单例对象
      */
-    private static Configurator getConfigurator() {
+    public static Configurator getConfigurator() {
         return Configurator.getInstance();
     }
 

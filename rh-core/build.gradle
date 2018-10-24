@@ -79,4 +79,6 @@ dependencies {
     api 'org.greenrobot:greendao-generator:3.2.2'
     api 'org.greenrobot:greendao:3.2.2'
     //api 'net.zetetic:android-database-sqlcipher:3.5.7@aar'//给数据库加密
+    //微信依赖（包含统计）
+    api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
 }

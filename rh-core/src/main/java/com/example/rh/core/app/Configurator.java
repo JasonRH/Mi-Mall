@@ -1,5 +1,7 @@
 package com.example.rh.core.app;
 
+import android.app.Activity;
+
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
@@ -76,6 +78,20 @@ public class Configurator {
     public final Configurator withInterceptor(ArrayList<Interceptor> interceptors) {
         INTERCEPTORS.addAll(interceptors);
         APP_CONFIGS.put(ConfigType.INTERCEPTOR, INTERCEPTORS);
+        return this;
+    }
+
+    /**微信AppId*/
+    public final Configurator withWeChatAppId(String appId) {
+        APP_CONFIGS.put(ConfigType.WE_CHAT_APP_ID, appId);
+        return this;
+    }
+    public final Configurator withWeChatAppSecret(String appSecret) {
+        APP_CONFIGS.put(ConfigType.WE_CHAT_APP_SECRET, appSecret);
+        return this;
+    }
+    public final Configurator withActivity(Activity activity) {
+        APP_CONFIGS.put(ConfigType.ACTIVITY, activity);
         return this;
     }
 

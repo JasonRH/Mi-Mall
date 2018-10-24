@@ -34,7 +34,6 @@ public class EntryVisitor extends SimpleAnnotationValueVisitor8<Void, Void> {
         generateJavaCode(t);
         return p;
     }
-    //生成类文件
     private void generateJavaCode(TypeMirror typeMirror) {
         final TypeSpec targetActivity =
                 TypeSpec.classBuilder("WXEntryActivity")

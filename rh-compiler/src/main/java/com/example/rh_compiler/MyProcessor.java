@@ -77,7 +77,6 @@ public class MyProcessor extends AbstractProcessor {
     private void generateEntryCode(RoundEnvironment env) {
         final EntryVisitor entryVisitor =
                 new EntryVisitor(processingEnv.getFiler());
-        //扫描类文件
         scan(env, EntryGenerator.class, entryVisitor);
     }
 

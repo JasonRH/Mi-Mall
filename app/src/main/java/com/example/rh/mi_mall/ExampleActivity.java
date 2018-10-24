@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.widget.Toast;
 
 import com.example.rh.core.activity.BaseActivity;
+import com.example.rh.core.app.MyApp;
 import com.example.rh.core.fragment.BaseAppFragment;
 import com.example.rh.core.ui.launcher.ILauncherListener;
 import com.example.rh.core.ui.launcher.OnLauncherFinishTag;
@@ -27,6 +28,8 @@ public class ExampleActivity extends BaseActivity implements
         if (actionBar != null) {
             actionBar.hide();
         }
+        //传入Activity，微信需要
+        MyApp.getConfigurator().withActivity(this);
     }
 
     @Override

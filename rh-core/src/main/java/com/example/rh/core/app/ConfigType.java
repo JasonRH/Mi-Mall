@@ -22,6 +22,12 @@ public enum ConfigType {
     /**
      * 拦截器
      */
-    INTERCEPTOR
+    INTERCEPTOR,
+    /**
+     * 微信
+     */
+    WE_CHAT_APP_ID,
+    WE_CHAT_APP_SECRET,
+    ACTIVITY
 
 }

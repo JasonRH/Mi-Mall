@@ -24,6 +24,8 @@ public class MyApplication extends Application {
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new MyFontAlibabaModule())
                 .withInterceptor(new DebugInterceptor("myTest", R.raw.test))
+                .withWeChatAppId("")
+                .withWeChatAppSecret("")
                 .configure();
 
         //初始化logger

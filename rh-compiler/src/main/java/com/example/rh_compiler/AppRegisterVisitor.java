@@ -35,7 +35,6 @@ public class AppRegisterVisitor extends SimpleAnnotationValueVisitor8<Void, Void
         return p;
     }
 
-    //生成类文件
     private void generateJavaCode(TypeMirror typeMirror) {
         final TypeSpec targetActivity =
                 TypeSpec.classBuilder("AppRegister")
@@ -45,8 +44,7 @@ public class AppRegisterVisitor extends SimpleAnnotationValueVisitor8<Void, Void
                         .build();
 
         final JavaFile javaFile = JavaFile.builder(mPackageName + ".wxapi", targetActivity)
-                //注释
-                .addFileComment("微信广播接收器")
+                .addFileComment("WeChat Broadcast Receiver")
                 .build();
         try {
             javaFile.writeTo(FILER);
