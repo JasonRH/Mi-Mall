@@ -9,7 +9,7 @@ import com.joanzapata.iconify.Icon;
 public enum FontAlibabaIcons implements Icon {
     /**
      * 图标unicode编码
-     * 此处的名称与IconTextView中的text对应
+     * 此处的名称与IconTextView中的text对应，但下划线需要改成中划线
      */
     icon_scan('\ue6ac'),
     icon_ali_pay('\ue603');
@@ -20,6 +20,9 @@ public enum FontAlibabaIcons implements Icon {
         this.character = character;
     }
 
+    /**
+     * 将划线改成中划线
+     */
     @Override
     public String key() {
         return name().replace('_', '-');

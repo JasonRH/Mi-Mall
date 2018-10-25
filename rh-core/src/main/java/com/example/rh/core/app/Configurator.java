@@ -1,12 +1,14 @@
 package com.example.rh.core.app;
 
 import android.app.Activity;
+import android.os.Handler;
 
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.PropertyResourceBundle;
 
 import okhttp3.Interceptor;
 
@@ -30,9 +32,11 @@ public class Configurator {
      */
     private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
+    private static final Handler HANDLER = new Handler();
 
     private Configurator() {
         APP_CONFIGS.put(ConfigType.CONFIG_READY, false);
+        APP_CONFIGS.put(ConfigType.HANDLER, HANDLER);
     }
 
     /**
@@ -69,27 +73,34 @@ public class Configurator {
         return this;
     }
 
-    /**添加拦截器*/
+    /**
+     * 添加拦截器
+     */
     public final Configurator withInterceptor(Interceptor interceptor) {
         INTERCEPTORS.add(interceptor);
         APP_CONFIGS.put(ConfigType.INTERCEPTOR, INTERCEPTORS);
         return this;
     }
+
     public final Configurator withInterceptor(ArrayList<Interceptor> interceptors) {
         INTERCEPTORS.addAll(interceptors);
         APP_CONFIGS.put(ConfigType.INTERCEPTOR, INTERCEPTORS);
         return this;
     }
 
-    /**微信AppId*/
+    /**
+     * 微信AppId
+     */
     public final Configurator withWeChatAppId(String appId) {
         APP_CONFIGS.put(ConfigType.WE_CHAT_APP_ID, appId);
         return this;
     }
+
     public final Configurator withWeChatAppSecret(String appSecret) {
         APP_CONFIGS.put(ConfigType.WE_CHAT_APP_SECRET, appSecret);
         return this;
     }
+
     public final Configurator withActivity(Activity activity) {
         APP_CONFIGS.put(ConfigType.ACTIVITY, activity);
         return this;

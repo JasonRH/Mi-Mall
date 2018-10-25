@@ -1,6 +1,7 @@
 package com.example.rh.core.app;
 
 import android.content.Context;
+import android.os.Handler;
 
 /**
  * @author RH
@@ -37,5 +38,10 @@ public final class MyApp {
      */
     public static Context getApplicationContext() {
         return getConfiguration(ConfigType.APPLICATION_CONTEXT);
+    }
+
+    /**获取Handler*/
+    public static Handler getHandler() {
+        return getConfiguration(ConfigType.HANDLER);
     }
 }
