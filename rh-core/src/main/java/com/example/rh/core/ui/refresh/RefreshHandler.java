@@ -1,8 +1,11 @@
 package com.example.rh.core.ui.refresh;
 
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.widget.Toast;
 
 import com.example.rh.core.app.MyApp;
+import com.example.rh.core.net.RetrofitClient;
+import com.example.rh.core.net.callback.ISuccess;
 
 /**
  * @author RH
@@ -17,6 +20,11 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener {
         REFRESH_LAYOUT.setOnRefreshListener(this);
     }
 
+    @Override
+    public void onRefresh() {
+        refresh();
+    }
+
     private void refresh() {
         REFRESH_LAYOUT.setRefreshing(true);
         MyApp.getHandler().postDelayed(new Runnable() {
@@ -28,8 +36,18 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener {
         }, 2000);
     }
 
-    @Override
-    public void onRefresh() {
-        refresh();
+    public void firstPage(String url) {
+        RetrofitClient
+                .builder()
+                .url(url)
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        Toast.makeText(MyApp.getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .build()
+                .get();
     }
+
 }

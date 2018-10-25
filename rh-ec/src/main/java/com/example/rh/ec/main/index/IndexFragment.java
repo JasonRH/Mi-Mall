@@ -34,7 +34,7 @@ public class IndexFragment extends BottomItemFragment {
     @BindView(R2.id.fragment_index_edit_search)
     AppCompatEditText mSearchView = null;
 
-    private RefreshHandler refreshHandler = null;
+    private RefreshHandler mRefreshHandler = null;
 
     @Override
     protected Object setLayout() {
@@ -42,14 +42,15 @@ public class IndexFragment extends BottomItemFragment {
     }
 
     @Override
-    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
-        super.onLazyInitView(savedInstanceState);
-        initRefreshLayout();
+    protected void onBindView(Bundle savedInstanceState, View rootView) {
+        mRefreshHandler = new RefreshHandler(mRefreshLayout);
     }
 
     @Override
-    protected void onBindView(Bundle savedInstanceState, View rootView) {
-        refreshHandler = new RefreshHandler(mRefreshLayout);
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        initRefreshLayout();
+        mRefreshHandler.firstPage("index.json");
     }
 
     private void initRefreshLayout() {
