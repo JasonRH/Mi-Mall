@@ -5,6 +5,8 @@ import java.util.LinkedHashMap;
 /**
  * @author RH
  * @date 2018/10/25
+ * <p>
+ * Item实体类builder
  */
 public class MultipleItemEntityBuilder {
     private static final LinkedHashMap<Object, Object> FIELDS = new LinkedHashMap<>();
