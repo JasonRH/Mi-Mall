@@ -15,7 +15,11 @@ import com.example.rh_core.R;
  */
 public class ImageHolder extends Holder<String> {
 
-    private AppCompatImageView mImageView = null;
+    /**
+     * 控件不能赋值空
+     */
+    private AppCompatImageView mImageView;
+
     private static final RequestOptions BANNER_OPTIONS = new RequestOptions()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .dontAnimate()

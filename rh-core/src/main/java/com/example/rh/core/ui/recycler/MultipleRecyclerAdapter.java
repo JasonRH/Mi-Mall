@@ -1,11 +1,8 @@
 package com.example.rh.core.ui.recycler;
 
-import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Switch;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
@@ -14,12 +11,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.rh.core.ui.banner.BannerCreator;
 import com.example.rh_core.R;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -28,11 +23,15 @@ import java.util.List;
  */
 public class MultipleRecyclerAdapter extends
         BaseMultiItemQuickAdapter<MultipleItemEntity, MultipleViewHolder>
-        implements BaseQuickAdapter.SpanSizeLookup,OnItemClickListener {
+        implements BaseQuickAdapter.SpanSizeLookup, OnItemClickListener {
 
-    //确保初始化一次Banner，防止重复Item加载
+    /**
+     * 确保初始化一次Banner，防止重复Item加载
+     */
     private boolean mIsInitBanner = false;
-    //设置图片加载策略
+    /**
+     * 设置图片加载策略
+     */
     private static final RequestOptions RECYCLER_OPTIONS =
             new RequestOptions()
                     .centerCrop()
@@ -104,6 +103,9 @@ public class MultipleRecyclerAdapter extends
         return MultipleViewHolder.create(view);
     }
 
+    /**
+     * 初始化布局
+     */
     private void init() {
         //设置不同的Item布局
         addItemType(ItemType.TEXT, R.layout.item_multiple_text);
@@ -119,6 +121,6 @@ public class MultipleRecyclerAdapter extends
 
     @Override
     public void onItemClick(int position) {
-
+        //点击轮播图
     }
 }

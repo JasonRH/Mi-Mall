@@ -2,13 +2,14 @@ package com.example.rh.ec.main.index;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.PluralsRes;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.example.rh.core.fragment.bottom.BaseBottomFragment;
 import com.example.rh.core.fragment.bottom.BottomItemFragment;
 import com.example.rh.core.ui.refresh.RefreshHandler;
 import com.example.rh.ec.R;
@@ -43,13 +44,14 @@ public class IndexFragment extends BottomItemFragment {
 
     @Override
     protected void onBindView(Bundle savedInstanceState, View rootView) {
-        mRefreshHandler = new RefreshHandler(mRefreshLayout);
+        mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView, new IndexDataConverter());
     }
 
     @Override
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         initRefreshLayout();
+        initRecyclerView();
         mRefreshHandler.firstPage("index.json");
     }
 
@@ -61,6 +63,12 @@ public class IndexFragment extends BottomItemFragment {
         );
         //设置大小渐变及偏移量
         mRefreshLayout.setProgressViewOffset(true, 120, 300);
+    }
+
+    private void initRecyclerView() {
+        final GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
+        mRecyclerView.setLayoutManager(manager);
+
     }
 
 }
