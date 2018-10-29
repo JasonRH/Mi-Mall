@@ -3,6 +3,7 @@ package com.example.rh.ec.main.index;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.annotation.PluralsRes;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.GridLayoutManager;
@@ -11,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.example.rh.core.fragment.bottom.BottomItemFragment;
+import com.example.rh.core.ui.recycler.BaseDecoration;
 import com.example.rh.core.ui.refresh.RefreshHandler;
 import com.example.rh.ec.R;
 import com.example.rh.ec.R2;
@@ -68,7 +70,8 @@ public class IndexFragment extends BottomItemFragment {
     private void initRecyclerView() {
         final GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
         mRecyclerView.setLayoutManager(manager);
-
+        mRecyclerView.addItemDecoration
+                (BaseDecoration.create(ContextCompat.getColor(getContext(), R.color.app_background), 5));
     }
 
 }
