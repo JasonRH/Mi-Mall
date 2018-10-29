@@ -15,6 +15,8 @@ import com.example.rh.ec.main.EcBottomFragment;
 import com.example.rh.ec.sign.ISignListener;
 import com.example.rh.ec.sign.SignInFragment;
 
+import qiu.niorgai.StatusBarCompat;
+
 /**
  * @author RH
  * @date 2018/10/17
@@ -31,6 +33,8 @@ public class ExampleActivity extends BaseActivity implements
         }
         //传入Activity，微信需要
         MyApp.getConfigurator().withActivity(this);
+        //实现沉浸式状态栏
+        StatusBarCompat.translucentStatusBar(this, true);
     }
 
     @Override

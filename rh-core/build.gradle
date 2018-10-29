@@ -106,4 +106,13 @@ dependencies {
     api 'com.github.bumptech.glide:glide:4.8.0'
     api 'com.github.bumptech.glide:okhttp3-integration:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+
+    //沉浸式状态栏
+    api('com.github.niorgai:StatusBarCompat:2.1.4', {
+        exclude group: 'com.android.support'
+    })
+
+    //google AutoValue
+    compileOnly "com.google.auto.value:auto-value-annotations:1.6.2"
+    annotationProcessor "com.google.auto.value:auto-value:1.6.2"
 }
