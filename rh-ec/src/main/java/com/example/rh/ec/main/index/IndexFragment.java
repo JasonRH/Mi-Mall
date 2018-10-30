@@ -16,6 +16,7 @@ import com.example.rh.core.ui.recycler.BaseDecoration;
 import com.example.rh.core.ui.refresh.RefreshHandler;
 import com.example.rh.ec.R;
 import com.example.rh.ec.R2;
+import com.example.rh.ec.main.EcBottomFragment;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
@@ -72,6 +73,12 @@ public class IndexFragment extends BottomItemFragment {
         mRecyclerView.setLayoutManager(manager);
         mRecyclerView.addItemDecoration
                 (BaseDecoration.create(ContextCompat.getColor(getContext(), R.color.app_background), 5));
+
+        //得到父布局
+        final EcBottomFragment ecBottomFragment = getMyParentFragment();
+        //传入ecBottomFragment，则打开和ecBottomFragment同级的页面，底部导航栏不可见
+        //传入this，则打开和IndexFragment同级的页面，底部导航栏可见
+        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomFragment));
     }
 
 }

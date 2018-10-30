@@ -11,6 +11,7 @@ import com.example.rh.core.net.callback.IFailure;
 import com.example.rh.core.net.callback.ISuccess;
 import com.example.rh.core.net_rx.RxRetrofitClient;
 import com.example.rh.core.net_rx.RxRetrofitCreator;
+import com.example.rh.core.utils.log.MyLogger;
 
 import java.util.WeakHashMap;
 
@@ -32,34 +33,44 @@ public class MainActivity extends AppCompatActivity {
 
         //testRetrofitClient();
         //onCallRxGet1();
-        onCallRxGet2();
+        //onCallRxGet2();
     }
 
     //TODO:测试网络，可删除
     private void testRetrofitClient() {
+        String url = "";
+        WeakHashMap<String, Object> paramMap = new WeakHashMap<>();
+        paramMap.put("user", "kyjwh1");
+        paramMap.put("passwd", "888888");
+        paramMap.put("vmId", "53-1708-0005");
+        /*paramMap.put("user", "whuser");
+        paramMap.put("passwd", "888888");
+        paramMap.put("vmId", "18-1711-0001");*/
         RetrofitClient.builder()
-                .url("http://127.0.0.1/myTest")
+                .url(url)
+                .params(paramMap)
                 .loader(this)
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
                         Toast.makeText(MyApp.getApplicationContext(), response, Toast.LENGTH_SHORT).show();
+                        MyLogger.d("onSuccess: " + response);
                     }
                 })
                 .failure(new IFailure() {
                     @Override
                     public void onFailure() {
-
+                        MyLogger.e("测试网络", "onFailure: ");
                     }
                 })
                 .error(new IError() {
                     @Override
                     public void onError(int code, String msg) {
-
+                        MyLogger.e("测试网络", "onError: ");
                     }
                 })
                 .build()
-                .get();
+                .post();
     }
 
     //TODO:测试 RxJava+Retrofit，方案一（最简洁），可删除

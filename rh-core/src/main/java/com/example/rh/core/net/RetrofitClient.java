@@ -11,6 +11,7 @@ import com.example.rh.core.net.callback.RequestCallbacks;
 import com.example.rh.core.net.download.DownloadHandler;
 import com.example.rh.core.ui.loader.LoaderStyle;
 import com.example.rh.core.ui.loader.MyLoader;
+import com.example.rh.core.utils.log.MyLogger;
 
 import java.io.File;
 import java.util.Map;
@@ -128,6 +129,7 @@ public class RetrofitClient {
         if (LOADER_STYLE != null) {
             MyLoader.showLoading(CONTEXT, LOADER_STYLE);
         }
+        MyLogger.d("开始网络请求");
         switch (method) {
             case GET:
                 call = service.get(URL, PARAMS);

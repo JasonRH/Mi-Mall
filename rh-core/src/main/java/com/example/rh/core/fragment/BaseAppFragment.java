@@ -5,4 +5,12 @@ package com.example.rh.core.fragment;
  * @date 2018/8/22
  */
 public abstract class BaseAppFragment extends AbstractPermissionFragment {
+    /**
+     * 得到父布局
+     */
+    @SuppressWarnings("unchecked")
+    public <T extends BaseAppFragment> T getMyParentFragment() {
+        return (T) getParentFragment();
+    }
+
 }
