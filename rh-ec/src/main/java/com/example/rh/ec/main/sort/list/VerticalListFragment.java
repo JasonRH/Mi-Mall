@@ -40,7 +40,7 @@ public class VerticalListFragment extends BaseAppFragment {
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         RetrofitClient.builder()
-                .url("sort.json")
+                .url("sort_list.json")
                 .loader(getContext())
                 .success(new ISuccess() {
                     @Override

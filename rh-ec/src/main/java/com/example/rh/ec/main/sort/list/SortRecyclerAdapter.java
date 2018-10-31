@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
+import com.example.rh.core.fragment.BaseAppFragment;
 import com.example.rh.core.ui.recycler.ItemType;
 import com.example.rh.core.ui.recycler.MultipleFields;
 import com.example.rh.core.ui.recycler.MultipleItemEntity;
@@ -12,6 +13,7 @@ import com.example.rh.core.ui.recycler.MultipleRecyclerAdapter;
 import com.example.rh.core.ui.recycler.MultipleViewHolder;
 import com.example.rh.ec.R;
 import com.example.rh.ec.main.sort.SortFragment;
+import com.example.rh.ec.main.sort.content.ContentFragment;
 
 import java.util.List;
 
@@ -57,6 +59,8 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
                             mPrePosition = mCurrentPosition;
 
                             final int contentId = getData().get(mCurrentPosition).getField(MultipleFields.ID);
+                            //显示具体分类详情页面
+                            showContent(contentId);
                         }
 
                     }
@@ -78,6 +82,20 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
 
             default:
                 break;
+        }
+    }
+
+
+    private void showContent(int contentId) {
+        final ContentFragment contentFragment = ContentFragment.newInstance(contentId);
+        switchContent(contentFragment);
+    }
+
+    private void switchContent(ContentFragment fragment) {
+        final BaseAppFragment contentFragment = sortFragment.findChildFragment(ContentFragment.class);
+        if (contentFragment != null) {
+            //不加入返回栈
+            contentFragment.replaceFragment(fragment, false);
         }
     }
 }
