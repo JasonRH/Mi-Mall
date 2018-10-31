@@ -24,7 +24,7 @@ public class ItemType {
      */
     public static final int BANNER = 4;
     /**
-     * 垂直标题
+     * 分类页面中，垂直标题
      */
     public static final int VERTICAL_MENU_LIST = 5;
     /**

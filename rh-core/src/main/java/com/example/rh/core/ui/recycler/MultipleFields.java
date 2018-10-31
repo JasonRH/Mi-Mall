@@ -32,6 +32,7 @@ public enum MultipleFields {
      * 宽度
      */
     SPAN_SIZE,
+
     ID,
     NAME,
     TAG
