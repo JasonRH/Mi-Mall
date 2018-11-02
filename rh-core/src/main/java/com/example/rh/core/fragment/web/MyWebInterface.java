@@ -7,13 +7,13 @@ import com.alibaba.fastjson.JSON;
  * @date 2018/11/2
  */
 public class MyWebInterface {
-    private final MyWebFragment fragment;
+    private final BaseWebFragment fragment;
 
-    public MyWebInterface(MyWebFragment fragment) {
+    public MyWebInterface(BaseWebFragment fragment) {
         this.fragment = fragment;
     }
 
-    static MyWebInterface create(MyWebFragment fragment) {
+    static MyWebInterface create(BaseWebFragment fragment) {
         return new MyWebInterface(fragment);
     }
 

@@ -15,16 +15,16 @@ import java.lang.ref.WeakReference;
  * @author RH
  * @date 2018/11/1
  */
-public abstract class MyWebFragment extends BaseAppFragment {
+public abstract class BaseWebFragment extends BaseAppFragment implements IWebViewInitialize {
     private WebView mWebView = null;
     private ReferenceQueue<WebView> WEB_VIEW_QUEUE = new ReferenceQueue<>();
     private String mUrl = null;
     private boolean mIsWebAvailable = false;
+    private BaseAppFragment mTopFragment = null;
 
-    public MyWebFragment() {
+    public BaseWebFragment() {
     }
 
-    public abstract IWebViewInitialize setInitialize();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public abstract class MyWebFragment extends BaseAppFragment {
         if (bundle != null) {
             mUrl = bundle.getString(RouteKeys.URL.name());
         }
+        initWebView();
     }
 
 
@@ -68,6 +69,11 @@ public abstract class MyWebFragment extends BaseAppFragment {
         }
     }
 
+    /**
+     * 子类返回接口使用对象
+     */
+    public abstract IWebViewInitialize setInitialize();
+
     @SuppressLint("JavascriptInterface")
     private void initWebView() {
         if (mWebView != null) {
@@ -89,5 +95,31 @@ public abstract class MyWebFragment extends BaseAppFragment {
                 throw new NullPointerException("IWebViewInitialize is null");
             }
         }
+    }
+
+    public WebView getmWebView() {
+        if (mWebView == null) {
+            throw new NullPointerException("mWebView is Null");
+        }
+        return mIsWebAvailable ? mWebView : null;
+    }
+
+    public String getmUrl() {
+        if (mUrl == null) {
+            throw new NullPointerException("mUrl is Null");
+        }
+        return mUrl;
+    }
+
+    public void setTopFragment(BaseAppFragment fragment) {
+        mTopFragment = fragment;
+    }
+
+    public BaseAppFragment getmTopFragment() {
+        if (mTopFragment == null) {
+            //如果没有设置TopFragment则以此Fragment为父布局
+            mTopFragment = this;
+        }
+        return mTopFragment;
     }
 }
