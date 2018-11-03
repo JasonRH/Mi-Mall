@@ -8,7 +8,7 @@ package com.example.rh.core.app;
  */
 public enum ConfigType {
     /**
-     * 服务器地址
+     * API host
      */
     API_HOST,
     /**
@@ -34,5 +34,9 @@ public enum ConfigType {
      */
     HANDLER,
     /***/
-    JAVASCRIPT_INTERFACE
+    JAVASCRIPT_INTERFACE,
+    /**
+     * 浏览器host
+     */
+    WEB_HOST
 }

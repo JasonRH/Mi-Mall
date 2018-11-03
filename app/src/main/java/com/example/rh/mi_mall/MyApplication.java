@@ -3,6 +3,7 @@ package com.example.rh.mi_mall;
 import android.app.Application;
 
 import com.example.rh.core.app.MyApp;
+import com.example.rh.core.net.interceptors.AddCookieInterceptor;
 import com.example.rh.core.net.interceptors.DebugInterceptor;
 import com.example.rh.ec.database.DatabaseManager;
 import com.example.rh.ec.icon.MyFontAlibabaModule;
@@ -31,6 +32,9 @@ public class MyApplication extends Application {
                 .withJavascriptInterface("rh")
                 //添加Event实现类，该类中的具体实现被js调用
                 .withWebEvent("test", new TestEvent())
+                //添加Cookie同步拦截器
+                .withInterceptor(new AddCookieInterceptor())
+                .withWebHost("https://www.toutiao.com/")
                 .configure();
 
         //初始化logger

@@ -77,6 +77,7 @@ public class MyPreference {
     }
 
     public static String getCustomAppProfile(String key) {
+        //第二个参数为默认值
         return getAppPreference().getString(key, "");
     }
 }

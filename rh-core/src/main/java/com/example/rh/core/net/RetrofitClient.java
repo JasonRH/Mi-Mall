@@ -89,7 +89,6 @@ public class RetrofitClient {
 
     public final void get() {
         request(HttpMethod.GET);
-        Log.e("get", "get: ");
     }
 
     public final void put() {
@@ -129,7 +128,6 @@ public class RetrofitClient {
         if (LOADER_STYLE != null) {
             MyLoader.showLoading(CONTEXT, LOADER_STYLE);
         }
-        MyLogger.d("开始网络请求");
         switch (method) {
             case GET:
                 call = service.get(URL, PARAMS);

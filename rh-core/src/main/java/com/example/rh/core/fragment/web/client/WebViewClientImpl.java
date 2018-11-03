@@ -1,16 +1,19 @@
 package com.example.rh.core.fragment.web.client;
 
 import android.graphics.Bitmap;
+import android.webkit.CookieManager;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.example.rh.core.app.ConfigType;
 import com.example.rh.core.app.MyApp;
 import com.example.rh.core.fragment.web.BaseWebFragment;
 import com.example.rh.core.fragment.web.IPageLoadListener;
 import com.example.rh.core.fragment.web.route.Router;
 import com.example.rh.core.ui.loader.MyLoader;
 import com.example.rh.core.utils.log.MyLogger;
+import com.example.rh.core.utils.storage.MyPreference;
 
 /**
  * @author RH
@@ -54,6 +57,8 @@ public class WebViewClientImpl extends WebViewClient {
     @Override
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
+        //将浏览器Cookie存储
+        syncCookie();
         if (mPageLoadListener != null) {
             mPageLoadListener.onLoadFinish();
         }
@@ -62,6 +67,27 @@ public class WebViewClientImpl extends WebViewClient {
             public void run() {
                 MyLoader.stopLoading();
             }
-        },1000);
+        }, 0);
     }
+
+    /**
+     * 获取浏览器cookie
+     */
+    private void syncCookie() {
+        final CookieManager manager = CookieManager.getInstance();
+        /*
+        注意，这里的Cookie和API请求的Cookie是不一样的，这个在网页中不可见
+        */
+        final String webHost = MyApp.getConfiguration(ConfigType.WEB_HOST);
+        if (webHost != null) {
+            if (manager.hasCookies()) {
+                final String cookieStr = manager.getCookie(webHost);
+                if (cookieStr != null && !"".equals(cookieStr)) {
+                    //将浏览器获取的Cookie存储到SharedPreferences
+                    MyPreference.addCustomAppProfile("cookie", cookieStr);
+                }
+            }
+        }
+    }
+
 }

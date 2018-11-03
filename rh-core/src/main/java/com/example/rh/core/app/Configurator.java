@@ -124,6 +124,14 @@ public class Configurator {
     }
 
     /**
+     * 传入浏览器host
+     */
+    public final Configurator withWebHost(String host) {
+        APP_CONFIGS.put(ConfigType.WEB_HOST, host);
+        return this;
+    }
+
+    /**
      * 完成初始化
      */
     public final void configure() {
