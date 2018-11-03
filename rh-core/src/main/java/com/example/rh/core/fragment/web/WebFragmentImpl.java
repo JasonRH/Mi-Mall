@@ -16,6 +16,7 @@ import com.example.rh.core.fragment.web.route.Router;
  * @date 2018/11/2
  */
 public class WebFragmentImpl extends BaseWebFragment {
+    private IPageLoadListener mPageLoadListener = null;
 
     public static WebFragmentImpl create(String url) {
         final Bundle bundle = new Bundle();
@@ -54,6 +55,7 @@ public class WebFragmentImpl extends BaseWebFragment {
     public WebViewClient initWebViewClient() {
         //帮助WebView处理各种通知、请求事件
         final WebViewClientImpl client = new WebViewClientImpl(this);
+        client.setPageLoadListener(mPageLoadListener);
         return client;
     }
 
@@ -61,5 +63,12 @@ public class WebFragmentImpl extends BaseWebFragment {
     public WebChromeClient initWebChromeClient() {
         //辅助WebView处理JavaScript的对话框、网站图标、网站title、加载进度等
         return new WebChromeClientImpl();
+    }
+
+    /**
+     * 页面加载进度回调，可在详情页中实现
+     */
+    public void setPageLoadListener(IPageLoadListener loadListener) {
+        this.mPageLoadListener = loadListener;
     }
 }
