@@ -9,7 +9,37 @@
 </head>
 <body>
 
-<h1>这是本地页面2</h1>
+<h2>本地页面2</h2>
 
+<button id="t">测试事件</button>
+
+<button id="b2">测试事件2</button>
+
+<input type="button" onclick="rh.showToast('测试js调用系统api')" value="调用系统api Toast"/>
+
+<script type="text/javascript">
+
+    document.getElementById('t').onclick = function () {
+        var command = {
+            'action': 'test'
+        };
+        //rh为与js映射的对象的别名
+        rh.event(JSON.stringify(command));
+    };
+
+    //Android可以调用的方法
+    function nativeCall() {
+        alert("原生调用了");
+        return "js返回的数据";
+    }
+
+    document.getElementById('b2').onclick = function () {
+        var command = {
+            'key': '这是测试'
+        };
+        rh.showToast(JSON.stringify(command));
+    };
+
+</script>
 </body>
 </html>

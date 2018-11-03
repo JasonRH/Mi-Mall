@@ -32,5 +32,7 @@ public enum ConfigType {
     /**
      * Handler
      */
-    HANDLER
+    HANDLER,
+    /***/
+    JAVASCRIPT_INTERFACE
 }

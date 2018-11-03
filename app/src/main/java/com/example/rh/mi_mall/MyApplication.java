@@ -6,6 +6,7 @@ import com.example.rh.core.app.MyApp;
 import com.example.rh.core.net.interceptors.DebugInterceptor;
 import com.example.rh.ec.database.DatabaseManager;
 import com.example.rh.ec.icon.MyFontAlibabaModule;
+import com.example.rh.mi_mall.event.TestEvent;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.orhanobut.logger.AndroidLogAdapter;
@@ -26,6 +27,10 @@ public class MyApplication extends Application {
                 .withInterceptor(new DebugInterceptor("myTest", R.raw.test))
                 .withWeChatAppId("")
                 .withWeChatAppSecret("")
+                //添加与js映射的java对象 别名，该别名需要在js中使用
+                .withJavascriptInterface("rh")
+                //添加Event实现类，该类中的具体实现被js调用
+                .withWebEvent("test", new TestEvent())
                 .configure();
 
         //初始化logger

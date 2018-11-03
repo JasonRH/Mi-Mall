@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.webkit.WebView;
 
+import com.example.rh.core.app.ConfigType;
+import com.example.rh.core.app.MyApp;
 import com.example.rh.core.fragment.BaseAppFragment;
 import com.example.rh.core.fragment.web.route.RouteKeys;
 
@@ -89,7 +91,13 @@ public abstract class BaseWebFragment extends BaseAppFragment implements IWebVie
                 mWebView = initialize.initWebView(mWebView);
                 mWebView.setWebViewClient(initialize.initWebViewClient());
                 mWebView.setWebChromeClient(initialize.initWebChromeClient());
-                mWebView.addJavascriptInterface(MyWebInterface.create(this), "rh");
+                final String name = MyApp.getConfiguration(ConfigType.JAVASCRIPT_INTERFACE);
+                /**
+                 * 添加javascriptInterface
+                 * 第一个参数：这里需要一个与js映射的java对象
+                 * 第二个参数：该java对象被映射为js对象后在js里面的对象名，在js中要调用该对象的方法就是通过这个来调用
+                 */
+                mWebView.addJavascriptInterface(MyWebInterface.create(this), name);
                 mIsWebAvailable = true;
             } else {
                 throw new NullPointerException("IWebViewInitialize is null");
