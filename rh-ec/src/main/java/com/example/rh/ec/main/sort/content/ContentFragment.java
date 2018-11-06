@@ -9,6 +9,7 @@ import android.view.View;
 import com.example.rh.core.fragment.BaseAppFragment;
 import com.example.rh.core.net.RetrofitClient;
 import com.example.rh.core.net.callback.ISuccess;
+import com.example.rh.core.utils.log.MyLogger;
 import com.example.rh.ec.R;
 import com.example.rh.ec.R2;
 
@@ -64,6 +65,7 @@ public class ContentFragment extends BaseAppFragment {
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
+                        MyLogger.d(response);
                         mData = new SectionDataConverter().convert(response);
                         final SectionAdapter sectionAdapter = new SectionAdapter(
                                 R.layout.item_section_content,

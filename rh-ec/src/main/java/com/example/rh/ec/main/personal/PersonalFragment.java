@@ -1,6 +1,7 @@
 package com.example.rh.ec.main.personal;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -11,11 +12,13 @@ import com.example.rh.ec.R2;
 import com.example.rh.ec.main.personal.list.ListAdapter;
 import com.example.rh.ec.main.personal.list.ListBean;
 import com.example.rh.ec.main.personal.list.ListItemType;
+import com.example.rh.ec.main.personal.order.OrderListFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 
 /**
@@ -26,10 +29,31 @@ public class PersonalFragment extends BottomItemFragment {
 
     @BindView(R2.id.rv_personal_setting)
     RecyclerView mRvSettings;
+    public static final String ORDER_TYPE = "ORDER_TYPE";
+    private Bundle bundle = null;
+
+    private void startOrderListByTppe() {
+        final OrderListFragment fragment = new OrderListFragment();
+        fragment.setArguments(bundle);
+        //在EcBottomFragment的基础上打开fragment，不需要展示底部导航栏
+        getMyParentFragment().getSupportDelegate().start(fragment);
+    }
+
+    @OnClick(R2.id.tv_all_order)
+    void onClickAllOrder() {
+        bundle.putString(ORDER_TYPE, "all");
+        startOrderListByTppe();
+    }
 
     @Override
     protected Object setLayout() {
         return R.layout.fragment_personal;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        bundle = new Bundle();
     }
 
     @Override
