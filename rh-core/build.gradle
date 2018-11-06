@@ -115,4 +115,7 @@ dependencies {
     //google AutoValue
     compileOnly "com.google.auto.value:auto-value-annotations:1.6.2"
     annotationProcessor "com.google.auto.value:auto-value:1.6.2"
+
+    /*实现图片圆形化*/
+    api 'de.hdodenhof:circleimageview:2.1.0'
 }
