@@ -1,12 +1,16 @@
 package com.example.rh.core.ui.banner;
 
 import android.support.v7.widget.AppCompatImageView;
+import android.util.Log;
 import android.view.View;
 
 import com.bigkoo.convenientbanner.holder.Holder;
+import com.blankj.utilcode.util.ActivityUtils;
+import com.blankj.utilcode.util.FileUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.rh.core.app.MyApp;
 import com.example.rh_core.R;
 
 /**
@@ -37,7 +41,9 @@ public class ImageHolder extends Holder<String> {
 
     @Override
     public void updateUI(String data) {
-        Glide.with(itemView.getContext())
+        //该处不能使用itemView，只能使用全局Context，否则会报错
+        //java.lang.IllegalArgumentException: You cannot start a load for a destroyed activity
+        Glide.with(MyApp.getApplicationContext())
                 .load(data)
                 .apply(BANNER_OPTIONS)
                 .into(mImageView);

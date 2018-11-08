@@ -23,7 +23,8 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         MyApp.init(this)
-                .withApiHost("http://10.203.70.146:8080/myservlet/json/mall/")
+                .withApiHost("http://192.168.137.18:8080/myservlet/json/mall/")
+                //.withApiHost("http://10.203.70.146:8080/myservlet/json/mall/")
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new MyFontAlibabaModule())
                 .withInterceptor(new DebugInterceptor("myTest", R.raw.test))

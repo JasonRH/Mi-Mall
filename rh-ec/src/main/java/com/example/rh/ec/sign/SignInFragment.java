@@ -61,9 +61,9 @@ public class SignInFragment extends BaseAppFragment {
         if (checkForm()) {
             RetrofitClient.builder()
                     //本地测试url，调用本地json文件
-                    .url("http://10.203.70.146:8080/myservlet/json/mall/myTest/user.json")
+                    //.url("myTest/user.json")
                     //远程服务器url
-                    //.url("http://10.203.70.146:8080/myservlet/json/mall/user.json")
+                    .url("user.json")
                     .params("email", mEmail.getText().toString())
                     .params("password", mPassword.getText().toString())
                     .success(new ISuccess() {

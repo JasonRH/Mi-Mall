@@ -1,6 +1,8 @@
 package com.example.rh.core.ui.recycler;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -123,4 +125,5 @@ public class MultipleRecyclerAdapter extends
     public void onItemClick(int position) {
         //点击轮播图
     }
+
 }
