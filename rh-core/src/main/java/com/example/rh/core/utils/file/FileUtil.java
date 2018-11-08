@@ -343,6 +343,9 @@ public final class FileUtil {
         }
     }
 
+    /**
+     * 将Uri路径转化为实际路径
+     */
     public static String getRealFilePath(final Context context, final Uri uri) {
         if (null == uri) {
             return null;

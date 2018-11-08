@@ -1,3 +1,9 @@
 {
-  "test": "value"
+  "data": {
+    "userId": 4,
+    "name": "Jason2",
+    "avatar": "暂无2",
+    "gender": "男2",
+    "address": "中国2"
+  }
 }

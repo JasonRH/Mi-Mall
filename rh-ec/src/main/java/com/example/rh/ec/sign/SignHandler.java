@@ -13,6 +13,9 @@ import com.example.rh.ec.database.UserProfile;
  */
 public class SignHandler {
 
+    /**
+     * 登录信息保留
+     */
     public static void onSignIn(String response, ISignListener signListener) {
         final JSONObject profileJson = JSON.parseObject(response).getJSONObject("data");
         final long userId = profileJson.getLong("userId");
@@ -27,6 +30,10 @@ public class SignHandler {
         AccountManager.setSignStatus(true);
         signListener.onSignInSuccess();
     }
+
+    /**
+     * 注册信息保留
+     */
     public static void onSignUp(String response, ISignListener signListener) {
         final JSONObject profileJson = JSON.parseObject(response).getJSONObject("data");
         final long userId = profileJson.getLong("userId");

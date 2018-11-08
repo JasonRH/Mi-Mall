@@ -183,4 +183,10 @@ public class RetrofitClient {
                 .handleDownload();
     }
 
+    /**
+     * 上传
+     */
+    public final void upload() {
+        request(HttpMethod.UPLOAD);
+    }
 }

@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import com.example.rh.core.fragment.BaseAppFragment;
 import com.example.rh.core.net.RetrofitClient;
+import com.example.rh.core.net.callback.IError;
+import com.example.rh.core.net.callback.IFailure;
 import com.example.rh.core.net.callback.ISuccess;
 import com.example.rh.core.utils.log.MyLogger;
 import com.example.rh.core.wechat.MyWeChat;
@@ -22,6 +24,8 @@ import butterknife.OnClick;
 /**
  * @author RH
  * @date 2018/10/19
+ * <p>
+ * 登录
  */
 public class SignInFragment extends BaseAppFragment {
     @BindView(R2.id.edit_sign_in_email)
@@ -49,11 +53,17 @@ public class SignInFragment extends BaseAppFragment {
 
     }
 
+    /**
+     * 登录
+     */
     @OnClick(R2.id.btn_sign_in)
     void onClickSignUp() {
         if (checkForm()) {
             RetrofitClient.builder()
-                    .url("http://10.203.70.146:8080/myservlet/json/mall/user.json")
+                    //本地测试url，调用本地json文件
+                    .url("http://10.203.70.146:8080/myservlet/json/mall/myTest/user.json")
+                    //远程服务器url
+                    //.url("http://10.203.70.146:8080/myservlet/json/mall/user.json")
                     .params("email", mEmail.getText().toString())
                     .params("password", mPassword.getText().toString())
                     .success(new ISuccess() {
@@ -61,6 +71,12 @@ public class SignInFragment extends BaseAppFragment {
                         public void onSuccess(String response) {
                             MyLogger.json("USER_PROFILE", response);
                             SignHandler.onSignIn(response, mISignListener);
+                        }
+                    })
+                    .failure(new IFailure() {
+                        @Override
+                        public void onFailure() {
+                            Toast.makeText(getContext(), "登录失败,请检查网络设置", Toast.LENGTH_SHORT).show();
                         }
                     })
                     .build()

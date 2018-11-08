@@ -63,7 +63,7 @@ public class RetrofitCreator {
      * 构建OkHttp
      */
     private static final class OKHttpHolder {
-        private static final int TIME_OUT = 10;
+        private static final int TIME_OUT = 5;
         private static final OkHttpClient.Builder BUILDER = new OkHttpClient.Builder();
         private static final ArrayList<Interceptor> INTERCEPTORS = MyApp.getConfiguration(ConfigType.INTERCEPTOR);
 

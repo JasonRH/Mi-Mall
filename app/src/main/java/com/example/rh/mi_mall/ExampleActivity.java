@@ -45,6 +45,7 @@ public class ExampleActivity extends BaseActivity implements
     @Override
     public void onSignInSuccess() {
         Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
+        startWithPop(new EcBottomFragment());
     }
 
     @Override

@@ -21,6 +21,8 @@ import butterknife.OnClick;
 /**
  * @author RH
  * @date 2018/10/19
+ *
+ * 注册页面
  */
 public class SignUpFragment extends BaseAppFragment {
     @BindView(R2.id.edit_sign_up_name)

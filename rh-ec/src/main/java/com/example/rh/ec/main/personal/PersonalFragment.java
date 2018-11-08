@@ -13,6 +13,7 @@ import com.example.rh.ec.main.personal.list.ListAdapter;
 import com.example.rh.ec.main.personal.list.ListBean;
 import com.example.rh.ec.main.personal.list.ListItemType;
 import com.example.rh.ec.main.personal.order.OrderListFragment;
+import com.example.rh.ec.main.personal.profile.UserProfileFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,8 +42,15 @@ public class PersonalFragment extends BottomItemFragment {
 
     @OnClick(R2.id.tv_all_order)
     void onClickAllOrder() {
+        //点击全部订单
         bundle.putString(ORDER_TYPE, "all");
         startOrderListByTppe();
+    }
+
+    @OnClick(R2.id.img_user_avatar)
+    void onClickAvatar() {
+        //点击头像
+        getMyParentFragment().getSupportDelegate().start(new UserProfileFragment());
     }
 
     @Override

@@ -118,4 +118,15 @@ dependencies {
 
     /*实现图片圆形化*/
     api 'de.hdodenhof:circleimageview:2.1.0'
+    //图片剪裁
+    api 'com.github.yalantis:ucrop:2.2.2-native'
+
+    //动态权限处理
+    api("com.github.hotchemi:permissionsdispatcher:3.3.1") {
+        exclude group: 'com.android.support'
+    }
+    annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:3.3.1"
+
+    //Android工具包
+    api 'com.blankj:utilcode:1.11.1'
 }

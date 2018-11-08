@@ -2,6 +2,7 @@ package com.example.rh.mi_mall;
 
 import android.app.Application;
 
+import com.blankj.utilcode.util.Utils;
 import com.example.rh.core.app.MyApp;
 import com.example.rh.core.net.interceptors.AddCookieInterceptor;
 import com.example.rh.core.net.interceptors.DebugInterceptor;
@@ -43,6 +44,9 @@ public class MyApplication extends Application {
         DatabaseManager.getInstance().init(this);
 
         initStetho();
+
+        //初始化AndroidUtilCode工具类
+        Utils.init(this);
     }
 
     //初始化Stetho，数据库查看工具
