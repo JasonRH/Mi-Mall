@@ -9,6 +9,7 @@ import android.view.View;
 import com.example.rh.core.fragment.bottom.BottomItemFragment;
 import com.example.rh.ec.R;
 import com.example.rh.ec.R2;
+import com.example.rh.ec.main.personal.address.AddressFragment;
 import com.example.rh.ec.main.personal.list.ListAdapter;
 import com.example.rh.ec.main.personal.list.ListBean;
 import com.example.rh.ec.main.personal.list.ListItemType;
@@ -70,6 +71,7 @@ public class PersonalFragment extends BottomItemFragment {
                 .setItemType(ListItemType.ITEM_NORMAL)
                 .setId(1)
                 .setText("收货地址")
+                .setmFragment(new AddressFragment())
                 .build();
 
         final ListBean system = new ListBean.Builder()
@@ -87,5 +89,7 @@ public class PersonalFragment extends BottomItemFragment {
         mRvSettings.setLayoutManager(manager);
         final ListAdapter adapter = new ListAdapter(data);
         mRvSettings.setAdapter(adapter);
+        mRvSettings.addOnItemTouchListener(new PersonalClickListener(this));
+
     }
 }

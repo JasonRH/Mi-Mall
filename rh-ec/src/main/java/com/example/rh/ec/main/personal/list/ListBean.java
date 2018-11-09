@@ -44,7 +44,7 @@ public class ListBean implements MultiItemEntity {
         return mId;
     }
 
-    public BaseAppFragment getFragment() {
+    public BaseAppFragment getmFragment() {
         return mFragment;
     }
 

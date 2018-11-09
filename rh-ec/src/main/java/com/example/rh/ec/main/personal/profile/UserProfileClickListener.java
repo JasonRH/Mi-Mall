@@ -2,21 +2,15 @@ package com.example.rh.ec.main.personal.profile;
 
 import android.content.DialogInterface;
 import android.net.Uri;
-import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.alibaba.fastjson.JSON;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.example.rh.core.fragment.BaseAppFragment;
-import com.example.rh.core.net.RetrofitClient;
-import com.example.rh.core.net.callback.IFailure;
-import com.example.rh.core.net.callback.ISuccess;
 import com.example.rh.core.ui.date.DateDialogUtil;
 import com.example.rh.core.utils.callback.CallbackManager;
 import com.example.rh.core.utils.callback.CallbackType;
@@ -97,7 +91,7 @@ public class UserProfileClickListener extends SimpleClickListener {
                 break;
             case 2:
                 //设置name
-                final BaseAppFragment nameFragment = bean.getFragment();
+                final BaseAppFragment nameFragment = bean.getmFragment();
                 fragment.getSupportDelegate().start(nameFragment);
                 break;
             case 3:
