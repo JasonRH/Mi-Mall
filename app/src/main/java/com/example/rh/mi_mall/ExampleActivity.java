@@ -15,6 +15,7 @@ import com.example.rh.ec.main.EcBottomFragment;
 import com.example.rh.ec.sign.ISignListener;
 import com.example.rh.ec.sign.SignInFragment;
 
+import cn.jpush.android.api.JPushInterface;
 import qiu.niorgai.StatusBarCompat;
 
 /**
@@ -35,6 +36,18 @@ public class ExampleActivity extends BaseActivity implements
         MyApp.getConfigurator().withActivity(this);
         //实现沉浸式状态栏
         StatusBarCompat.translucentStatusBar(this, true);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JPushInterface.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        JPushInterface.onResume(this);
     }
 
     @Override

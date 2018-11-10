@@ -14,6 +14,8 @@ import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * @author RH
  * @date 2018/8/20
@@ -48,6 +50,10 @@ public class MyApplication extends Application {
 
         //初始化AndroidUtilCode工具类
         Utils.init(this);
+
+        //初始化极光推送
+        JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
+        JPushInterface.init(this);     		// 初始化 JPush
     }
 
     //初始化Stetho，数据库查看工具
