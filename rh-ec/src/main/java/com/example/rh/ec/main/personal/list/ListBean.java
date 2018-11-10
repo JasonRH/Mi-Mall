@@ -48,7 +48,7 @@ public class ListBean implements MultiItemEntity {
         return mFragment;
     }
 
-    public CompoundButton.OnCheckedChangeListener getListener() {
+    public CompoundButton.OnCheckedChangeListener getOnCheckedChangeListener() {
         return listener;
     }
 

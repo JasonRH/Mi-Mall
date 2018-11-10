@@ -1,11 +1,16 @@
 package com.example.rh.mi_mall;
 
 import android.app.Application;
+import android.support.annotation.Nullable;
 
 import com.blankj.utilcode.util.Utils;
 import com.example.rh.core.app.MyApp;
 import com.example.rh.core.net.interceptors.AddCookieInterceptor;
 import com.example.rh.core.net.interceptors.DebugInterceptor;
+import com.example.rh.core.utils.callback.CallbackManager;
+import com.example.rh.core.utils.callback.CallbackType;
+import com.example.rh.core.utils.callback.IGlobalCallback;
+import com.example.rh.core.utils.log.MyLogger;
 import com.example.rh.ec.database.DatabaseManager;
 import com.example.rh.ec.icon.MyFontAlibabaModule;
 import com.example.rh.mi_mall.event.TestEvent;
@@ -52,11 +57,37 @@ public class MyApplication extends Application {
         Utils.init(this);
 
         //初始化极光推送
-        JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
-        JPushInterface.init(this);     		// 初始化 JPush
+        // 设置开启日志,发布时请关闭日志
+        JPushInterface.setDebugMode(true);
+        //初始化 JPush
+        JPushInterface.init(this);
+
+
+        CallbackManager.getInstance()
+                .addCallback(CallbackType.TAG_OPEN_PUSH, new IGlobalCallback() {
+                    @Override
+                    public void executeCallback(@Nullable Object args) {
+                        if (JPushInterface.isPushStopped(MyApp.getApplicationContext())) {
+                            //开启极光推送
+                            JPushInterface.resumePush(MyApp.getApplicationContext());
+                            MyLogger.d("开启推送");
+                        }
+                    }
+                })
+                .addCallback(CallbackType.TAG_STOP_PUSH, new IGlobalCallback() {
+                    @Override
+                    public void executeCallback(@Nullable Object args) {
+                        if (!JPushInterface.isPushStopped(MyApp.getApplicationContext())) {
+                            JPushInterface.stopPush(MyApp.getApplicationContext());
+                            MyLogger.d("关闭推送");
+                        }
+                    }
+                });
     }
 
-    //初始化Stetho，数据库查看工具
+    /**
+     * 初始化Stetho，数据库查看工具
+     */
     private void initStetho() {
         Stetho.initialize(
                 Stetho.newInitializerBuilder(this)

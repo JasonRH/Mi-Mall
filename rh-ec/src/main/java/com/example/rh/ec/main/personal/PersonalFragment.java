@@ -15,6 +15,7 @@ import com.example.rh.ec.main.personal.list.ListBean;
 import com.example.rh.ec.main.personal.list.ListItemType;
 import com.example.rh.ec.main.personal.order.OrderListFragment;
 import com.example.rh.ec.main.personal.profile.UserProfileFragment;
+import com.example.rh.ec.main.personal.settings.SettingsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +78,7 @@ public class PersonalFragment extends BottomItemFragment {
         final ListBean system = new ListBean.Builder()
                 .setItemType(ListItemType.ITEM_NORMAL)
                 .setId(2)
+                .setmFragment(new SettingsFragment())
                 .setText("系统设置")
                 .build();
 
