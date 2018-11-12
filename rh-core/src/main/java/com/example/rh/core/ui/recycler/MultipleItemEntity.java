@@ -43,6 +43,9 @@ public class MultipleItemEntity implements MultiItemEntity {
         return (T) FIELDS_REFERENCE.get().get(key);
     }
 
+    /**
+     * 获取全部字段
+     */
     public final LinkedHashMap<?, ?> getFields() {
         return FIELDS_REFERENCE.get();
     }
