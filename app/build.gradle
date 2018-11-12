@@ -15,7 +15,7 @@ android {
 /*极光推送配置*/
         ndk {
             //选择要添加的对应 cpu 类型的 .so 库。
-            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a','x86'
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a', 'x86'
             // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
         }
 
@@ -38,6 +38,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
         encoding "UTF-8"
+    }
+}
+
+//rh-ec Module中引用aar ，则依赖rh-ec的Module也需要进行相应配置
+repositories {
+    flatDir {
+        dirs 'libs', '../rh-ec/libs'
     }
 }
 

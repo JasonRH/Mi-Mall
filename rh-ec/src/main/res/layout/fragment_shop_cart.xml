@@ -132,6 +132,18 @@
                 tools:ignore="HardcodedText,RtlHardcoded" />
         </android.support.v7.widget.LinearLayoutCompat>
 
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/fragment_cart_pay"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/app_main"
+            android:gravity="center"
+            android:text="结算"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
+
     </android.support.v7.widget.LinearLayoutCompat>
 
 </android.support.v7.widget.LinearLayoutCompat>

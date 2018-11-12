@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSON;
 import com.example.rh.core.fragment.bottom.BottomItemFragment;
 import com.example.rh.core.net.RetrofitClient;
 import com.example.rh.core.net.callback.ISuccess;
@@ -21,10 +22,13 @@ import com.example.rh.core.ui.recycler.MultipleItemEntity;
 import com.example.rh.core.utils.log.MyLogger;
 import com.example.rh.ec.R;
 import com.example.rh.ec.R2;
+import com.example.rh.ec.pay.FastPay;
+import com.example.rh.ec.pay.IAlPayResultListener;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.WeakHashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -33,7 +37,7 @@ import butterknife.OnClick;
  * @author RH
  * @date 2018/10/24
  */
-public class ShopCartFragment extends BottomItemFragment implements ISuccess, ICartItemListener {
+public class ShopCartFragment extends BottomItemFragment implements ISuccess, ICartItemListener ,IAlPayResultListener {
 
     private ShopCartAdapter mAdapter = null;
 
@@ -45,7 +49,6 @@ public class ShopCartFragment extends BottomItemFragment implements ISuccess, IC
     ViewStubCompat mStubNoItem = null;
     @BindView(R2.id.fragment_cart_total_price)
     AppCompatTextView mTvTotalPrice = null;
-
 
     @OnClick(R2.id.fragment_cart_select_all)
     void onClickSelectAll() {
@@ -100,6 +103,12 @@ public class ShopCartFragment extends BottomItemFragment implements ISuccess, IC
             checkItemCount();
         }
     }
+
+    @OnClick(R2.id.fragment_cart_pay)
+    void onClickPay() {
+        createOrder();
+    }
+
 
     @Override
     protected Object setLayout() {
@@ -167,5 +176,65 @@ public class ShopCartFragment extends BottomItemFragment implements ISuccess, IC
         //价格回调
         final double price = mAdapter.getTotalPrice();
         mTvTotalPrice.setText(String.valueOf(price));
+    }
+
+    /**
+     * 创建订单，注意，和支付是没有关系的
+     */
+    private void createOrder() {
+        final String orderUrl = "create_order.json";
+        final WeakHashMap<String, Object> orderParams = new WeakHashMap<>();
+        orderParams.put("userId", "你的id");
+        orderParams.put("amount", 0.01);
+        orderParams.put("comment", "测试支付");
+        orderParams.put("type", 1);
+        orderParams.put("ordertype", 0);
+        orderParams.put("isanonymous", true);
+        orderParams.put("followeduser", 0);
+
+        RetrofitClient.builder()
+                .url(orderUrl)
+                .loader(getContext())
+                .params(orderParams)
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        //进行具体的支付
+                        final int orderId = JSON.parseObject(response).getInteger("result");
+                        FastPay.create(ShopCartFragment.this)
+                                .setPayResultListener(ShopCartFragment.this)
+                                .setOrderId(orderId)
+                                .beginPayDialog();
+
+                    }
+                })
+                .build()
+                .post();
+
+    }
+
+    @Override
+    public void onPaySuccess() {
+
+    }
+
+    @Override
+    public void onPaying() {
+
+    }
+
+    @Override
+    public void onPayFail() {
+
+    }
+
+    @Override
+    public void onPayCancel() {
+
+    }
+
+    @Override
+    public void onPayConnectError() {
+
     }
 }

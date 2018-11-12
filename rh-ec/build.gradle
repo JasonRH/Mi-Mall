@@ -34,6 +34,13 @@ android {
 
 }
 
+//引用aar必须添加
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
@@ -45,4 +52,6 @@ dependencies {
     //想要在library中butterknife，必须在每个library中添加该依赖
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
+
+    implementation(name: 'alipaySdk-15.5.7-20181023110917', ext: 'aar')
 }
