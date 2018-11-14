@@ -106,6 +106,7 @@ public abstract class PermissionCheckerDelegate extends BaseFragment {
                                 .withMaxResultSize(400, 400)
                                 .start(getContext(), this);
                     }
+                    break;
                 case RequestCodes.CROP_PHOTO:
                     final Uri cropUri = UCrop.getOutput(data);
                     //拿到剪裁后的数据进行处理
