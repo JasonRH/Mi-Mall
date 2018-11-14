@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import com.example.rh.core.ui.camera.CameraImageBean;
 import com.example.rh.core.ui.camera.MyCamera;
 import com.example.rh.core.ui.camera.RequestCodes;
+import com.example.rh.core.ui.scanner.ScannerFragment;
 import com.example.rh.core.utils.callback.CallbackManager;
 import com.example.rh.core.utils.callback.CallbackType;
 import com.example.rh.core.utils.callback.IGlobalCallback;
@@ -31,15 +33,30 @@ import permissions.dispatcher.RuntimePermissions;
 @RuntimePermissions
 public abstract class PermissionCheckerDelegate extends BaseFragment {
 
-    //不是直接调用方法
+    //打开相机(不是直接调用方法)
     @NeedsPermission({Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE})
     void startCamare() {
         MyCamera.start(this);
     }
 
-    //这个是真正调用的方法
+    /**
+     * 打开相机(这个是真正调用的方法)
+     */
     public void startCameraWithCheck() {
         PermissionCheckerDelegatePermissionsDispatcher.startCamareWithPermissionCheck(this);
+    }
+
+    //扫描二维码(不直接调用)
+    @NeedsPermission(Manifest.permission.CAMERA)
+    void startScan(BaseFragment fragment) {
+        fragment.getSupportDelegate().start(new ScannerFragment());
+    }
+
+    /**
+     * 扫描二维码(直接调用)
+     */
+    public void startScanWithCheck(BaseFragment fragment) {
+        PermissionCheckerDelegatePermissionsDispatcher.startScanWithPermissionCheck(this, fragment);
     }
 
     @OnPermissionDenied({Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE})

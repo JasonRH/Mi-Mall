@@ -10,16 +10,21 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.rh.core.fragment.bottom.BottomItemFragment;
 import com.example.rh.core.ui.recycler.BaseDecoration;
 import com.example.rh.core.ui.refresh.RefreshHandler;
+import com.example.rh.core.utils.callback.CallbackManager;
+import com.example.rh.core.utils.callback.CallbackType;
+import com.example.rh.core.utils.callback.IGlobalCallback;
 import com.example.rh.ec.R;
 import com.example.rh.ec.R2;
 import com.example.rh.ec.main.EcBottomFragment;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * @author RH
@@ -40,6 +45,11 @@ public class IndexFragment extends BottomItemFragment {
 
     private RefreshHandler mRefreshHandler = null;
 
+    @OnClick(R2.id.fragment_index_icon_scan)
+    void onClickScanQrCode() {
+        startScanWithCheck(this.getMyParentFragment());
+    }
+
     @Override
     protected Object setLayout() {
         return R.layout.fragment_index;
@@ -48,6 +58,15 @@ public class IndexFragment extends BottomItemFragment {
     @Override
     protected void onBindView(Bundle savedInstanceState, View rootView) {
         mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecyclerView, new IndexDataConverter());
+
+        //扫描二维码回调
+        CallbackManager.getInstance()
+                .addCallback(CallbackType.ON_SCAN, new IGlobalCallback<String>() {
+                    @Override
+                    public void executeCallback(String args) {
+                        Toast.makeText(getContext(), "二维码信息是：" + args, Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     @Override

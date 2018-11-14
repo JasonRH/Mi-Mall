@@ -130,4 +130,7 @@ dependencies {
 
     //Android工具包
     api 'com.blankj:utilcode:1.11.1'
+
+    //二维码扫描
+    api 'me.dm7.barcodescanner:zbar:1.9.8'
 }
