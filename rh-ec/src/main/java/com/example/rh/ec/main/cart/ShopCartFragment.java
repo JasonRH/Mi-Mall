@@ -125,7 +125,7 @@ public class ShopCartFragment extends BottomItemFragment implements ISuccess, IC
         super.onLazyInitView(savedInstanceState);
         RetrofitClient.builder()
                 .loader(getContext())
-                .url("shop_cart_data.json")
+                .url("json/mall/shop_cart_data.json")
                 .success(this)
                 .build()
                 .get();

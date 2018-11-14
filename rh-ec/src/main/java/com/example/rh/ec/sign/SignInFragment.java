@@ -63,7 +63,7 @@ public class SignInFragment extends BaseAppFragment {
                     //本地测试url，调用本地json文件
                     //.url("myTest/user.json")
                     //远程服务器url
-                    .url("user.json")
+                    .url("json/mall/user.json")
                     .params("email", mEmail.getText().toString())
                     .params("password", mPassword.getText().toString())
                     .success(new ISuccess() {

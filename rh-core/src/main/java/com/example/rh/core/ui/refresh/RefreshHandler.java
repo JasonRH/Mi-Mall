@@ -2,10 +2,8 @@ package com.example.rh.core.ui.refresh;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.rh.core.app.MyApp;
@@ -13,6 +11,7 @@ import com.example.rh.core.net.RetrofitClient;
 import com.example.rh.core.net.callback.ISuccess;
 import com.example.rh.core.ui.recycler.DataConverter;
 import com.example.rh.core.ui.recycler.MultipleRecyclerAdapter;
+import com.example.rh.core.utils.log.MyLogger;
 
 /**
  * @author RH
@@ -83,8 +82,41 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener, Bas
                 .get();
     }
 
+    private void paging(String url) {
+        final int pageSize = BEAN.getmPageSize();
+        final int currentCount = BEAN.getmCurrentCount();
+        final int total = BEAN.getmTotal();
+        final int index = BEAN.getmPageIndex();
+
+        if (mAdapter.getData().size() < pageSize || currentCount >= total) {
+            mAdapter.loadMoreEnd(true);
+        } else {
+            MyApp.getHandler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    RetrofitClient.builder()
+                            .url(url + index)
+                            .success(new ISuccess() {
+                                @Override
+                                public void onSuccess(String response) {
+                                    MyLogger.json("paging", response);
+                                    CONVERTER.clearData();
+                                    mAdapter.addData(CONVERTER.setJsonData(response).convert());
+                                    //累加数量
+                                    BEAN.setmCurrentCount(mAdapter.getData().size());
+                                    mAdapter.loadMoreComplete();
+                                    BEAN.addIndex();
+                                }
+                            })
+                            .build()
+                            .get();
+                }
+            }, 1000);
+        }
+    }
+
     @Override
     public void onLoadMoreRequested() {
-
+        paging("Mall?index=");
     }
 }

@@ -30,7 +30,7 @@ public class AboutFragment extends BaseAppFragment {
     @Override
     protected void onBindView(Bundle savedInstanceState, View rootView) {
         RetrofitClient.builder()
-                .url("about.json")
+                .url("json/mall/about.json")
                 .loader(getContext())
                 .success(new ISuccess() {
                     @Override

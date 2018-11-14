@@ -34,7 +34,7 @@ public class AddressFragment extends BaseAppFragment implements ISuccess {
     @Override
     protected void onBindView(Bundle savedInstanceState, View rootView) {
         RetrofitClient.builder()
-                .url("address.json")
+                .url("json/mall/address.json")
                 .loader(getContext())
                 .success(this)
                 .build()

@@ -124,7 +124,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                         if (Integer.valueOf(tvCount.getText().toString()) > 1) {
                             //通知服务器更改数量
                             RetrofitClient.builder()
-                                    .url("shop_cart_count.json")
+                                    .url("json/mall/shop_cart_count.json")
                                     .loader(mContext)
                                     .params("count", currentCount)
                                     .success(new ISuccess() {
@@ -154,7 +154,7 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                         //通知服务器更改数量
                         final int currentCount = entity.getField(ShopCartItemFields.COUNT);
                         RetrofitClient.builder()
-                                .url("shop_cart_count.json")
+                                .url("json/mall/shop_cart_count.json")
                                 .loader(mContext)
                                 .params("count", currentCount)
                                 .success(new ISuccess() {

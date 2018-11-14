@@ -74,7 +74,7 @@ public class IndexFragment extends BottomItemFragment {
         super.onLazyInitView(savedInstanceState);
         initRefreshLayout();
         initRecyclerView();
-        mRefreshHandler.firstPage("index.json");
+        mRefreshHandler.firstPage("json/mall/index.json");
     }
 
     private void initRefreshLayout() {

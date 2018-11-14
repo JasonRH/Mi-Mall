@@ -43,7 +43,7 @@ public class AddressAdapter extends MultipleRecyclerAdapter{
                     @Override
                     public void onClick(View v) {
                         RetrofitClient.builder()
-                                .url("address.json")
+                                .url("json/mall/address.json")
                                 .params("id", id)
                                 .success(new ISuccess() {
                                     @Override

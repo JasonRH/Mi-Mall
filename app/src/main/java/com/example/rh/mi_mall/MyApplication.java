@@ -31,7 +31,7 @@ public class MyApplication extends Application {
         super.onCreate();
         MyApp.init(this)
                 //.withApiHost("http://192.168.137.18:8080/myservlet/json/mall/")
-                .withApiHost("http://10.203.70.146:8080/myservlet/json/mall/")
+                .withApiHost("http://10.203.70.146:8080/myservlet/")
                 .withIcon(new FontAwesomeModule())
                 .withIcon(new MyFontAlibabaModule())
                 .withInterceptor(new DebugInterceptor("myTest", R.raw.test))

@@ -61,7 +61,7 @@ public class ContentFragment extends BaseAppFragment {
     private void initData() {
         RetrofitClient.builder()
                 //.url("sort_content.json?contentId=" + mContentId)
-                .url("sort_content_"+mContentId+".json")
+                .url("json/mall/sort_content_"+mContentId+".json")
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {

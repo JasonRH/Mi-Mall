@@ -50,7 +50,7 @@ public class OrderListFragment extends BaseAppFragment {
         Log.e("OrderListFragment", "onLazyInitView: ");
         RetrofitClient.builder()
                 .loader(getContext())
-                .url("order_list.json")
+                .url("json/mall/order_list.json")
                 .params("type", mType)
                 .success(new ISuccess() {
                     @Override
