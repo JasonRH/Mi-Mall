@@ -69,6 +69,10 @@ public class MyPreference {
                 .getBoolean(key, false);
     }
 
+
+    /**
+     * 自定义的SharedPreferences
+     */
     public static void addCustomAppProfile(String key, String val) {
         getAppPreference()
                 .edit()

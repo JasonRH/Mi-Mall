@@ -21,6 +21,7 @@ import com.example.rh.core.utils.callback.IGlobalCallback;
 import com.example.rh.ec.R;
 import com.example.rh.ec.R2;
 import com.example.rh.ec.main.EcBottomFragment;
+import com.example.rh.ec.main.index.search.SearchFragment;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
@@ -30,7 +31,7 @@ import butterknife.OnClick;
  * @author RH
  * @date 2018/10/24
  */
-public class IndexFragment extends BottomItemFragment {
+public class IndexFragment extends BottomItemFragment implements View.OnFocusChangeListener {
 
     @BindView(R2.id.fragment_index_recycler)
     RecyclerView mRecyclerView = null;
@@ -67,6 +68,9 @@ public class IndexFragment extends BottomItemFragment {
                         Toast.makeText(getContext(), "二维码信息是：" + args, Toast.LENGTH_SHORT).show();
                     }
                 });
+
+        //搜索
+        mSearchView.setOnFocusChangeListener(this);
     }
 
     @Override
@@ -100,4 +104,10 @@ public class IndexFragment extends BottomItemFragment {
         mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomFragment));
     }
 
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        if (hasFocus) {
+            getMyParentFragment().getSupportDelegate().start(new SearchFragment());
+        }
+    }
 }
