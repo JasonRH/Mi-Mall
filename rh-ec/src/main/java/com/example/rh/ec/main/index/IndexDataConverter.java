@@ -18,6 +18,10 @@ public class IndexDataConverter extends DataConverter {
     @Override
     public ArrayList<MultipleItemEntity> convert() {
         final JSONArray dataArray = JSON.parseObject(getJsonData()).getJSONArray("data");
+        if (dataArray == null) {
+            return null;
+            //throw new NullPointerException("Server data is null");
+        }
         final int size = dataArray.size();
         for (int i = 0; i < size; i++) {
             final JSONObject data = dataArray.getJSONObject(i);
@@ -57,6 +61,6 @@ public class IndexDataConverter extends DataConverter {
             //各Item的数据添加到集合
             ENTITIES.add(entity);
         }
-        return ENTITIES ;
+        return ENTITIES;
     }
 }

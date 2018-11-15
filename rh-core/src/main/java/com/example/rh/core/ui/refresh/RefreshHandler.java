@@ -10,8 +10,11 @@ import com.example.rh.core.app.MyApp;
 import com.example.rh.core.net.RetrofitClient;
 import com.example.rh.core.net.callback.ISuccess;
 import com.example.rh.core.ui.recycler.DataConverter;
+import com.example.rh.core.ui.recycler.MultipleItemEntity;
 import com.example.rh.core.ui.recycler.MultipleRecyclerAdapter;
 import com.example.rh.core.utils.log.MyLogger;
+
+import java.util.ArrayList;
 
 /**
  * @author RH
@@ -73,6 +76,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener, Bas
                                 .setmPageSize(object.getInteger("page_size"));
                         //设置Adapter
                         mAdapter = MultipleRecyclerAdapter.create(CONVERTER.setJsonData(response));
+                        //加载更多
                         mAdapter.setOnLoadMoreListener(RefreshHandler.this, RECYCLERVIEW);
                         RECYCLERVIEW.setAdapter(mAdapter);
                         BEAN.addIndex();
@@ -100,12 +104,18 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener, Bas
                                 @Override
                                 public void onSuccess(String response) {
                                     MyLogger.json("paging", response);
-                                    CONVERTER.clearData();
-                                    mAdapter.addData(CONVERTER.setJsonData(response).convert());
-                                    //累加数量
-                                    BEAN.setmCurrentCount(mAdapter.getData().size());
-                                    mAdapter.loadMoreComplete();
-                                    BEAN.addIndex();
+                                    ArrayList<MultipleItemEntity> data = CONVERTER.setJsonData(response).convert();
+                                    if (data != null && data.size() > 0) {
+                                        CONVERTER.clearData();
+                                        mAdapter.addData(data);
+                                        //累加数量
+                                        BEAN.setmCurrentCount(mAdapter.getData().size());
+                                        mAdapter.loadMoreComplete();
+                                        BEAN.addIndex();
+                                    } else {
+                                        MyLogger.e("下一页", "暂无数据");
+                                    }
+
                                 }
                             })
                             .build()
