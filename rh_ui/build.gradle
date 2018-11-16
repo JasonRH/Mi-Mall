@@ -34,4 +34,9 @@ dependencies {
 
     api project(':rh-core')
 
+    //View动画依赖
+    //api'com.nineoldandroids:library:2.4.0'
+    api 'com.daimajia.easing:library:2.0@aar'
+    api 'com.daimajia.androidanimations:library:2.3@aar'
+
 }

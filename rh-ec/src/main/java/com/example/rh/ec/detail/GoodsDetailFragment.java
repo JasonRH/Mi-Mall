@@ -15,9 +15,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.bigkoo.convenientbanner.ConvenientBanner;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.daimajia.androidanimations.library.YoYo;
 import com.example.rh.core.fragment.BaseAppFragment;
 import com.example.rh.core.net.RetrofitClient;
 import com.example.rh.core.net.callback.ISuccess;
@@ -26,12 +31,16 @@ import com.example.rh.core.utils.log.MyLogger;
 import com.example.rh.ec.R;
 import com.example.rh.ec.R2;
 import com.example.rh.ui.CircleTextView;
+import com.example.rh.ui.animation.BezierAnimation;
+import com.example.rh.ui.animation.BezierUtil;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
+import de.hdodenhof.circleimageview.CircleImageView;
 import me.yokeyword.fragmentation.anim.DefaultHorizontalAnimator;
 import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
@@ -39,7 +48,9 @@ import me.yokeyword.fragmentation.anim.FragmentAnimator;
  * @author RH
  * @date 2018/10/30
  */
-public class GoodsDetailFragment extends BaseAppFragment implements AppBarLayout.OnOffsetChangedListener {
+public class GoodsDetailFragment extends BaseAppFragment implements
+        AppBarLayout.OnOffsetChangedListener,
+        BezierUtil.AnimationListener {
 
     @BindView(R2.id.goods_detail_toolbar)
     Toolbar mToolbar = null;
@@ -69,6 +80,38 @@ public class GoodsDetailFragment extends BaseAppFragment implements AppBarLayout
     private static final String GOODS_ID = "GOODS_ID";
     private int mGoodsId = -1;
 
+    private String mGoodsThumbUrl = null;
+    private int mShopCount = 0;
+
+    private static final RequestOptions OPTIONS = new RequestOptions()
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .centerCrop()
+            .dontAnimate()
+            .override(100, 100);
+
+
+    /**
+     * 点击加入购物车
+     */
+    @OnClick(R2.id.rl_add_shop_cart)
+    void onClickAddShopCart() {
+        final CircleImageView animImg = new CircleImageView(getContext());
+        Glide.with(this)
+                .load(mGoodsThumbUrl)
+                .apply(OPTIONS)
+                .into(animImg);
+        //添加购物车动画(会存在Fragment退出，动画未完成的风险)
+        BezierAnimation.addCart(this, mRlAddShopCart, mIconShopCart, animImg, this);
+        //updateShopCart();
+    }
+
+    private void setShopCartCount(JSONObject data) {
+        mGoodsThumbUrl = data.getString("thumb");
+        if (mShopCount == 0) {
+            mCircleTextView.setVisibility(View.GONE);
+        }
+    }
+
     public static GoodsDetailFragment create(@NonNull int goodsId) {
         final Bundle bundle = new Bundle();
         bundle.putInt(GOODS_ID, goodsId);
@@ -96,6 +139,7 @@ public class GoodsDetailFragment extends BaseAppFragment implements AppBarLayout
         mCollapsingToolbarLayout.setContentScrimColor(Color.WHITE);
         //AppBar滚动监听
         mAppBar.addOnOffsetChangedListener(this);
+        mCircleTextView.setCircleBackground(Color.RED);
         initData();
         initTabLayout();
     }
@@ -120,6 +164,7 @@ public class GoodsDetailFragment extends BaseAppFragment implements AppBarLayout
                         initGoodsInfo(data);
                         //初始化ViewPager和TabLayout
                         initPager(data);
+                        setShopCartCount(data);
                     }
                 })
                 .build()
@@ -159,5 +204,33 @@ public class GoodsDetailFragment extends BaseAppFragment implements AppBarLayout
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
 
+    }
+
+    @Override
+    public void onAnimationEnd() {
+        //当动画加载完毕
+        updateShopCart();
+    }
+
+    private void updateShopCart() {
+        YoYo.with(new ScaleUpAnimator())
+                .duration(500)
+                .playOn(mIconShopCart);
+        RetrofitClient.builder()
+                .url("json/mall/add_shop_cart_count.json")
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        final boolean isAdded = JSON.parseObject(response).getBoolean("data");
+                        if (isAdded) {
+                            mShopCount++;
+                            mCircleTextView.setVisibility(View.VISIBLE);
+                            mCircleTextView.setText(String.valueOf(mShopCount));
+                        }
+                    }
+                })
+                .params("count", mShopCount)
+                .build()
+                .post();
     }
 }
