@@ -1,4 +1,4 @@
-package com.example.rh.ui;
+package com.example.rh.ui.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,7 +9,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -20,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.rh.core.fragment.BaseAppFragment;
+import com.example.rh.ui.R;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;

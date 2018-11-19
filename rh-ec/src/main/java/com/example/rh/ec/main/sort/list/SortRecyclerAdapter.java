@@ -6,16 +6,18 @@ import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
 import com.example.rh.core.fragment.BaseAppFragment;
-import com.example.rh.core.ui.recycler.ItemType;
-import com.example.rh.core.ui.recycler.MultipleFields;
-import com.example.rh.core.ui.recycler.MultipleItemEntity;
-import com.example.rh.core.ui.recycler.MultipleRecyclerAdapter;
-import com.example.rh.core.ui.recycler.MultipleViewHolder;
+import com.example.rh.ui.recycler.ItemType;
+import com.example.rh.ui.recycler.MultipleFields;
+import com.example.rh.ui.recycler.MultipleItemEntity;
+import com.example.rh.ui.recycler.MultipleRecyclerAdapter;
+import com.example.rh.ui.recycler.MultipleViewHolder;
 import com.example.rh.ec.R;
 import com.example.rh.ec.main.sort.SortFragment;
 import com.example.rh.ec.main.sort.content.ContentFragment;
 
 import java.util.List;
+
+import me.yokeyword.fragmentation.SupportHelper;
 
 /**
  * @author RH
@@ -92,10 +94,11 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
     }
 
     private void switchContent(ContentFragment fragment) {
-        final BaseAppFragment contentFragment = sortFragment.findChildFragment(ContentFragment.class);
+        final BaseAppFragment contentFragment =
+                SupportHelper.findFragment(sortFragment.getChildFragmentManager(), ContentFragment.class);
         if (contentFragment != null) {
             //不加入返回栈
-            contentFragment.replaceFragment(fragment, false);
+            contentFragment.getSupportDelegate().replaceFragment(fragment, false);
         }
     }
 }

@@ -2,10 +2,10 @@ package com.example.rh.ec.main.index.search;
 
 import android.support.v7.widget.AppCompatTextView;
 
-import com.example.rh.core.ui.recycler.MultipleFields;
-import com.example.rh.core.ui.recycler.MultipleItemEntity;
-import com.example.rh.core.ui.recycler.MultipleRecyclerAdapter;
-import com.example.rh.core.ui.recycler.MultipleViewHolder;
+import com.example.rh.ui.recycler.MultipleFields;
+import com.example.rh.ui.recycler.MultipleItemEntity;
+import com.example.rh.ui.recycler.MultipleRecyclerAdapter;
+import com.example.rh.ui.recycler.MultipleViewHolder;
 import com.example.rh.ec.R;
 
 import java.util.List;

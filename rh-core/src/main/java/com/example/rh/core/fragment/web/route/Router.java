@@ -43,7 +43,7 @@ public class Router {
         //打开新的页面
         final WebFragmentImpl webFragment = WebFragmentImpl.create(url);
 
-        topFragment.start(webFragment);
+        topFragment.getSupportDelegate().start(webFragment);
         return true;
     }
 

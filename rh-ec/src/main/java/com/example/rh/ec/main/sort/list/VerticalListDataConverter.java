@@ -1,14 +1,12 @@
 package com.example.rh.ec.main.sort.list;
 
-import android.widget.AdapterView;
-
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.example.rh.core.ui.recycler.DataConverter;
-import com.example.rh.core.ui.recycler.ItemType;
-import com.example.rh.core.ui.recycler.MultipleFields;
-import com.example.rh.core.ui.recycler.MultipleItemEntity;
+import com.example.rh.ui.recycler.DataConverter;
+import com.example.rh.ui.recycler.ItemType;
+import com.example.rh.ui.recycler.MultipleFields;
+import com.example.rh.ui.recycler.MultipleItemEntity;
 
 import java.util.ArrayList;
 

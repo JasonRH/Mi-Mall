@@ -69,7 +69,7 @@ public class SignUpFragment extends BaseAppFragment {
 
     @OnClick(R2.id.tv_sign_in_link)
     void onClickLink() {
-        startWithPop(new SignInFragment());
+        getSupportDelegate().startWithPop(new SignInFragment());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.rh.core.ui.banner;
+package com.example.rh.ui.banner;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;

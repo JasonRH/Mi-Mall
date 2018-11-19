@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.example.rh.core.fragment.BaseAppFragment;
-import com.example.rh.core.ui.date.DateDialogUtil;
+import com.example.rh.ui.date.DateDialogUtil;
 import com.example.rh.core.utils.callback.CallbackManager;
 import com.example.rh.core.utils.callback.CallbackType;
 import com.example.rh.core.utils.callback.IGlobalCallback;

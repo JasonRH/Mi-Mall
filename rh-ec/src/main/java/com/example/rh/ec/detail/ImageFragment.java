@@ -8,9 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.example.rh.core.fragment.BaseAppFragment;
-import com.example.rh.core.ui.recycler.ItemType;
-import com.example.rh.core.ui.recycler.MultipleFields;
-import com.example.rh.core.ui.recycler.MultipleItemEntity;
+import com.example.rh.ui.recycler.ItemType;
+import com.example.rh.ui.recycler.MultipleFields;
+import com.example.rh.ui.recycler.MultipleItemEntity;
 import com.example.rh.ec.R;
 import com.example.rh.ec.R2;
 

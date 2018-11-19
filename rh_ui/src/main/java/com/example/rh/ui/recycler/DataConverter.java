@@ -1,4 +1,4 @@
-package com.example.rh.core.ui.recycler;
+package com.example.rh.ui.recycler;
 
 import java.util.ArrayList;
 

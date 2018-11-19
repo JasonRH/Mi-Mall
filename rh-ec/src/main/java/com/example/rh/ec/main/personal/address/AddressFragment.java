@@ -8,7 +8,7 @@ import android.view.View;
 import com.example.rh.core.fragment.BaseAppFragment;
 import com.example.rh.core.net.RetrofitClient;
 import com.example.rh.core.net.callback.ISuccess;
-import com.example.rh.core.ui.recycler.MultipleItemEntity;
+import com.example.rh.ui.recycler.MultipleItemEntity;
 import com.example.rh.core.utils.log.MyLogger;
 import com.example.rh.ec.R;
 import com.example.rh.ec.R2;

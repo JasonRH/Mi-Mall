@@ -5,9 +5,8 @@ import android.view.View;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.example.rh.core.fragment.BaseAppFragment;
-import com.example.rh.core.ui.recycler.MultipleFields;
-import com.example.rh.core.ui.recycler.MultipleItemEntity;
-import com.example.rh.core.ui.refresh.PagingBean;
+import com.example.rh.ui.recycler.MultipleFields;
+import com.example.rh.ui.recycler.MultipleItemEntity;
 import com.example.rh.ec.detail.GoodsDetailFragment;
 
 /**
@@ -31,7 +30,7 @@ public class IndexItemClickListener extends SimpleClickListener {
         final MultipleItemEntity entity = (MultipleItemEntity) baseQuickAdapter.getData().get(position);
         final int goodId = entity.getField(MultipleFields.ID);
         final GoodsDetailFragment fragment = GoodsDetailFragment.create(goodId);
-        FRAGMENT.start(fragment);
+        FRAGMENT.getSupportDelegate().start(fragment);
     }
 
     @Override

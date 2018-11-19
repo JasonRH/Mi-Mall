@@ -12,8 +12,8 @@ import com.example.rh.core.utils.callback.CallbackType;
 import com.example.rh.core.utils.callback.IGlobalCallback;
 import com.example.rh.ec.R;
 import com.example.rh.ec.R2;
-import com.example.rh.ui.AutoPhotoLayout;
-import com.example.rh.ui.StarLayout;
+import com.example.rh.ui.widget.AutoPhotoLayout;
+import com.example.rh.ui.widget.StarLayout;
 
 import butterknife.BindView;
 import butterknife.OnClick;

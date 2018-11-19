@@ -9,9 +9,9 @@ import android.view.View;
 import com.example.rh.core.app.user.AccountManager;
 import com.example.rh.core.app.user.IUserChecker;
 import com.example.rh.core.fragment.BaseAppFragment;
-import com.example.rh.core.ui.launcher.ILauncherListener;
-import com.example.rh.core.ui.launcher.OnLauncherFinishTag;
-import com.example.rh.core.ui.launcher.ScrollLauncherTag;
+import com.example.rh.ui.launcher.ILauncherListener;
+import com.example.rh.ui.launcher.OnLauncherFinishTag;
+import com.example.rh.ui.launcher.ScrollLauncherTag;
 import com.example.rh.core.utils.storage.MyPreference;
 import com.example.rh.core.utils.timer.BaseTimerTask;
 import com.example.rh.core.utils.timer.ITimerListener;
@@ -100,7 +100,7 @@ public class LauncherFragment extends BaseAppFragment implements ITimerListener 
         if (!MyPreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())) {
             //start(new LauncherScrollFragment(), SINGLETASK);
             //将自身从返回栈中移除，避免可返回后退
-            startWithPop(new LauncherScrollFragment());
+            getSupportDelegate().startWithPop(new LauncherScrollFragment());
         } else {
             //检查用户是否登录
             AccountManager.checkAccount(new IUserChecker() {

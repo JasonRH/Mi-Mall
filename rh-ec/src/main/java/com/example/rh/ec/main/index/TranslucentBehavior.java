@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.example.rh.core.ui.recycler.RgbValue;
+import com.example.rh.ui.recycler.RgbValue;
 import com.example.rh.ec.R;
 
 /**

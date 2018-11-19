@@ -30,8 +30,8 @@ public class SortFragment extends BottomItemFragment {
         //点击分类导航栏时加载布局
         super.onLazyInitView(savedInstanceState);
         final VerticalListFragment listFragment = new VerticalListFragment();
-        loadRootFragment(R.id.sort_list_container, listFragment);
+        getSupportDelegate().loadRootFragment(R.id.sort_list_container, listFragment);
         //设置右侧第一个分类显示，默认显示分类一
-        loadRootFragment(R.id.sort_content_container, ContentFragment.newInstance(1));
+        getSupportDelegate().loadRootFragment(R.id.sort_content_container, ContentFragment.newInstance(1));
     }
 }

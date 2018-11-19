@@ -1,4 +1,4 @@
-package com.example.rh.core.ui.date;
+package com.example.rh.ui.date;
 
 import android.content.Context;
 import android.content.DialogInterface;

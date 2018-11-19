@@ -52,7 +52,7 @@
             android:text="评分"
             android:textColor="#323232" />
 
-        <com.example.rh.ui.StarLayout
+        <com.example.rh.ui.widget.StarLayout
             android:id="@+id/custom_star_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -70,7 +70,7 @@
         android:hint="写下评论"
         android:padding="10dp" />
 
-    <com.example.rh.ui.AutoPhotoLayout
+    <com.example.rh.ui.widget.AutoPhotoLayout
         android:id="@+id/custom_auto_photo_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

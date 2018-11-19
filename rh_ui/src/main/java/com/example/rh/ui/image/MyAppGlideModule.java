@@ -1,4 +1,4 @@
-package com.example.rh.core.ui.image;
+package com.example.rh.ui.image;
 
 import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;

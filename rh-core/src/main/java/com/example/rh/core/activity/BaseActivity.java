@@ -3,24 +3,33 @@ package com.example.rh.core.activity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ContentFrameLayout;
+import android.view.MotionEvent;
 import android.widget.FrameLayout;
 
 import com.example.rh.core.fragment.BaseAppFragment;
 import com.example.rh_core.R;
 
+import me.yokeyword.fragmentation.ExtraTransaction;
+import me.yokeyword.fragmentation.ISupportActivity;
 import me.yokeyword.fragmentation.SupportActivity;
+import me.yokeyword.fragmentation.SupportActivityDelegate;
+import me.yokeyword.fragmentation.anim.FragmentAnimator;
 
 /**
  * @author RH
  * @date 2018/8/22
- * <p>
- * 继承 fragmentation 中的Activity
+ *
  */
-public abstract class BaseActivity extends SupportActivity {
+public abstract class BaseActivity extends AppCompatActivity implements ISupportActivity {
+
+    final SupportActivityDelegate mDelegate = new SupportActivityDelegate(this);
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mDelegate.onCreate(savedInstanceState);
         //代码创建FrameLayout布局
         initContainer(savedInstanceState);
     }
@@ -33,7 +42,7 @@ public abstract class BaseActivity extends SupportActivity {
         if (savedInstanceState == null) {
             //加载根Fragment, 即Activity内的第一个Fragment 或 Fragment内的第一个子Fragment
             //fragmentation 中封装的方法
-            loadRootFragment(R.id.delegate_container, setRootDelegate());
+            mDelegate.loadRootFragment(R.id.delegate_container, setRootDelegate());
         }
     }
 
@@ -44,8 +53,59 @@ public abstract class BaseActivity extends SupportActivity {
 
     @Override
     protected void onDestroy() {
+        mDelegate.onDestroy();
         super.onDestroy();
         System.gc();
         System.runFinalization();
+    }
+
+    @Override
+    public SupportActivityDelegate getSupportDelegate() {
+        return mDelegate;
+    }
+
+    @Override
+    public ExtraTransaction extraTransaction() {
+        return mDelegate.extraTransaction();
+    }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        mDelegate.onPostCreate(savedInstanceState);
+    }
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return mDelegate.dispatchTouchEvent(ev) || super.dispatchTouchEvent(ev);
+    }
+
+    @Override
+    final public void onBackPressed() {
+        mDelegate.onBackPressed();
+    }
+
+    @Override
+    public void onBackPressedSupport() {
+        mDelegate.onBackPressedSupport();
+    }
+
+    @Override
+    public FragmentAnimator getFragmentAnimator() {
+        return mDelegate.getFragmentAnimator();
+    }
+
+    @Override
+    public void setFragmentAnimator(FragmentAnimator fragmentAnimator) {
+        mDelegate.setFragmentAnimator(fragmentAnimator);
+    }
+
+    @Override
+    public FragmentAnimator onCreateFragmentAnimator() {
+        return mDelegate.onCreateFragmentAnimator();
+    }
+
+    @Override
+    public void post(Runnable runnable) {
+        mDelegate.post(runnable);
     }
 }

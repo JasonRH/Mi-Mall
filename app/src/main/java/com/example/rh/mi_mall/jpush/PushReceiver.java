@@ -31,7 +31,7 @@ public class PushReceiver extends BroadcastReceiver {
             final Object val = bundle.get(key);
             json.put(key, val);
         }
-        MyLogger.e("PushReceiver", json.toJSONString());
+        MyLogger.i("PushReceiver", json.toJSONString());
 
         final String pushAction = intent.getAction();
         if (pushAction.equals(JPushInterface.ACTION_NOTIFICATION_RECEIVED)) {

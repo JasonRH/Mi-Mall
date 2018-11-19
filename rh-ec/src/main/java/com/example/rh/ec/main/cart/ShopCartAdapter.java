@@ -4,7 +4,6 @@ import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
-import android.util.Log;
 import android.view.View;
 
 import com.bumptech.glide.Glide;
@@ -13,10 +12,10 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.rh.core.app.MyApp;
 import com.example.rh.core.net.RetrofitClient;
 import com.example.rh.core.net.callback.ISuccess;
-import com.example.rh.core.ui.recycler.MultipleFields;
-import com.example.rh.core.ui.recycler.MultipleItemEntity;
-import com.example.rh.core.ui.recycler.MultipleRecyclerAdapter;
-import com.example.rh.core.ui.recycler.MultipleViewHolder;
+import com.example.rh.ui.recycler.MultipleFields;
+import com.example.rh.ui.recycler.MultipleItemEntity;
+import com.example.rh.ui.recycler.MultipleRecyclerAdapter;
+import com.example.rh.ui.recycler.MultipleViewHolder;
 import com.example.rh.ec.R;
 import com.joanzapata.iconify.widget.IconTextView;
 

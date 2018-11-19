@@ -1,4 +1,4 @@
-package com.example.rh.core.ui.launcher;
+package com.example.rh.ui.launcher;
 
 import android.support.v7.widget.AppCompatImageView;
 import android.view.View;

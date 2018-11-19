@@ -34,9 +34,31 @@ dependencies {
 
     api project(':rh-core')
 
+    //RecycleView Adapter依赖
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.38'
+    //RecyclerView 分割线
+    api 'com.choices.divider:RecyclerView_Divider:1.0.0'
+
+    //轮播图
+    api 'com.bigkoo:ConvenientBanner:2.1.4'
+    //轮播图需要额外导入recyclerview
+    api 'com.android.support:recyclerview-v7:27.1.1'
+
+    //google AutoValue
+    compileOnly "com.google.auto.value:auto-value-annotations:1.6.2"
+    annotationProcessor "com.google.auto.value:auto-value:1.6.2"
+
     //View动画依赖
     //api'com.nineoldandroids:library:2.4.0'
     api 'com.daimajia.easing:library:2.0@aar'
     api 'com.daimajia.androidanimations:library:2.3@aar'
+
+    //图片处理
+    api 'com.github.bumptech.glide:glide:4.8.0'
+    api 'com.github.bumptech.glide:okhttp3-integration:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+
+    /*实现图片圆形化*/
+    api 'de.hdodenhof:circleimageview:2.1.0'
 
 }

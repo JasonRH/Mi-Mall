@@ -7,10 +7,10 @@ import android.support.v7.widget.AppCompatTextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.example.rh.core.ui.recycler.MultipleFields;
-import com.example.rh.core.ui.recycler.MultipleItemEntity;
-import com.example.rh.core.ui.recycler.MultipleRecyclerAdapter;
-import com.example.rh.core.ui.recycler.MultipleViewHolder;
+import com.example.rh.ui.recycler.MultipleFields;
+import com.example.rh.ui.recycler.MultipleItemEntity;
+import com.example.rh.ui.recycler.MultipleRecyclerAdapter;
+import com.example.rh.ui.recycler.MultipleViewHolder;
 import com.example.rh.ec.R;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.rh.ui;
+package com.example.rh.ui.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;

@@ -31,7 +31,7 @@ public class DiscoverFragment extends BottomItemFragment {
         final WebFragmentImpl fragment = WebFragmentImpl.create("index.html");
         //获取的是EcBottomFragment
         fragment.setTopFragment(getMyParentFragment());
-        loadRootFragment(R.id.web_discovery_container, fragment);
+        getSupportDelegate().loadRootFragment(R.id.web_discovery_container, fragment);
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.example.rh.ui;
+package com.example.rh.ui.widget;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.rh.ui.R;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import java.util.ArrayList;

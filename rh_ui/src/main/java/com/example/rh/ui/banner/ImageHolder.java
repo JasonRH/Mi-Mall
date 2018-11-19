@@ -1,12 +1,9 @@
-package com.example.rh.core.ui.banner;
+package com.example.rh.ui.banner;
 
 import android.support.v7.widget.AppCompatImageView;
-import android.util.Log;
 import android.view.View;
 
 import com.bigkoo.convenientbanner.holder.Holder;
-import com.blankj.utilcode.util.ActivityUtils;
-import com.blankj.utilcode.util.FileUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;

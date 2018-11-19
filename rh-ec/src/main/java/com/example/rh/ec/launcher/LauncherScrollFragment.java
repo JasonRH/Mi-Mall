@@ -9,10 +9,10 @@ import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.example.rh.core.app.user.AccountManager;
 import com.example.rh.core.app.user.IUserChecker;
 import com.example.rh.core.fragment.BaseAppFragment;
-import com.example.rh.core.ui.launcher.ILauncherListener;
-import com.example.rh.core.ui.launcher.LauncherHolderCreator;
-import com.example.rh.core.ui.launcher.OnLauncherFinishTag;
-import com.example.rh.core.ui.launcher.ScrollLauncherTag;
+import com.example.rh.ui.launcher.ILauncherListener;
+import com.example.rh.ui.launcher.LauncherHolderCreator;
+import com.example.rh.ui.launcher.OnLauncherFinishTag;
+import com.example.rh.ui.launcher.ScrollLauncherTag;
 import com.example.rh.core.utils.storage.MyPreference;
 import com.example.rh.ec.R;
 

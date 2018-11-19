@@ -8,8 +8,8 @@ import android.widget.Toast;
 import com.example.rh.core.activity.BaseActivity;
 import com.example.rh.core.app.MyApp;
 import com.example.rh.core.fragment.BaseAppFragment;
-import com.example.rh.core.ui.launcher.ILauncherListener;
-import com.example.rh.core.ui.launcher.OnLauncherFinishTag;
+import com.example.rh.ui.launcher.ILauncherListener;
+import com.example.rh.ui.launcher.OnLauncherFinishTag;
 import com.example.rh.ec.launcher.LauncherFragment;
 import com.example.rh.ec.main.EcBottomFragment;
 import com.example.rh.ec.sign.ISignListener;
@@ -58,7 +58,7 @@ public class ExampleActivity extends BaseActivity implements
     @Override
     public void onSignInSuccess() {
         Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
-        startWithPop(new EcBottomFragment());
+        getSupportDelegate().startWithPop(new EcBottomFragment());
     }
 
     @Override
@@ -72,12 +72,12 @@ public class ExampleActivity extends BaseActivity implements
         switch (tag) {
             case SIGNED:
                 //用户已经登录
-                startWithPop(new EcBottomFragment());
+                getSupportDelegate().startWithPop(new EcBottomFragment());
                 break;
             case NOT_SIGNED:
                 //用户没登录,启动登录Fragment，并将自身从返回栈弹出
                 //Start the target Fragment and pop itself
-                startWithPop(new SignInFragment());
+                getSupportDelegate().startWithPop(new SignInFragment());
                 break;
             default:
                 break;

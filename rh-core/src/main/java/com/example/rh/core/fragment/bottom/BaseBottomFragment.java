@@ -20,6 +20,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import butterknife.BindView;
+import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.SupportFragment;
 
 
@@ -100,9 +101,9 @@ public abstract class BaseBottomFragment extends BaseAppFragment implements View
             }
         }
         //yokeyword.fragmentation依赖包中的SupportFragment
-        final SupportFragment[] fragmentArray = ITEM_FRAGMENT.toArray(new SupportFragment[size]);
+        final ISupportFragment[] fragmentArray = ITEM_FRAGMENT.toArray(new ISupportFragment[size]);
         //加载Fragment
-        loadMultipleRootFragment(R.id.bottom_bar_delegate_container, mIndexFragment, fragmentArray);
+        getSupportDelegate().loadMultipleRootFragment(R.id.bottom_bar_delegate_container, mIndexFragment, fragmentArray);
     }
 
     private void resetColor() {
@@ -126,7 +127,7 @@ public abstract class BaseBottomFragment extends BaseAppFragment implements View
         final AppCompatTextView itemTitle = (AppCompatTextView) item.getChildAt(1);
         itemTitle.setTextColor(mClickedColor);
         //注意先后顺序
-        showHideFragment(ITEM_FRAGMENT.get(tag), ITEM_FRAGMENT.get(mCurrentFragment));
+        getSupportDelegate().showHideFragment(ITEM_FRAGMENT.get(tag), ITEM_FRAGMENT.get(mCurrentFragment));
         mCurrentFragment = tag;
     }
 }

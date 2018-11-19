@@ -1,9 +1,9 @@
 package com.example.rh.ec.main.index.search;
 
 import com.alibaba.fastjson.JSONArray;
-import com.example.rh.core.ui.recycler.DataConverter;
-import com.example.rh.core.ui.recycler.MultipleFields;
-import com.example.rh.core.ui.recycler.MultipleItemEntity;
+import com.example.rh.ui.recycler.DataConverter;
+import com.example.rh.ui.recycler.MultipleFields;
+import com.example.rh.ui.recycler.MultipleItemEntity;
 import com.example.rh.core.utils.storage.MyPreference;
 
 import java.util.ArrayList;

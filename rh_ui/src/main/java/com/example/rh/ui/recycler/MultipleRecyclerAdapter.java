@@ -1,8 +1,6 @@
-package com.example.rh.core.ui.recycler;
+package com.example.rh.ui.recycler;
 
-import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -13,7 +11,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.example.rh.core.ui.banner.BannerCreator;
+import com.example.rh.ui.banner.BannerCreator;
 import com.example.rh_core.R;
 
 import java.util.ArrayList;

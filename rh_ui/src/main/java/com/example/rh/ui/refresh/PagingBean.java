@@ -1,4 +1,4 @@
-package com.example.rh.core.ui.refresh;
+package com.example.rh.ui.refresh;
 
 /**
  * @author RH

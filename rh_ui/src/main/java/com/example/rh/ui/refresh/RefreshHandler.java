@@ -1,4 +1,4 @@
-package com.example.rh.core.ui.refresh;
+package com.example.rh.ui.refresh;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
@@ -9,10 +9,10 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.rh.core.app.MyApp;
 import com.example.rh.core.net.RetrofitClient;
 import com.example.rh.core.net.callback.ISuccess;
-import com.example.rh.core.ui.recycler.DataConverter;
-import com.example.rh.core.ui.recycler.MultipleItemEntity;
-import com.example.rh.core.ui.recycler.MultipleRecyclerAdapter;
 import com.example.rh.core.utils.log.MyLogger;
+import com.example.rh.ui.recycler.DataConverter;
+import com.example.rh.ui.recycler.MultipleItemEntity;
+import com.example.rh.ui.recycler.MultipleRecyclerAdapter;
 
 import java.util.ArrayList;
 
@@ -86,7 +86,7 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener, Bas
                 .get();
     }
 
-    private void paging(String url) {
+    private void paging(final String url) {
         final int pageSize = BEAN.getmPageSize();
         final int currentCount = BEAN.getmCurrentCount();
         final int total = BEAN.getmTotal();

@@ -96,7 +96,7 @@ public class SignInFragment extends BaseAppFragment {
 
     @OnClick(R2.id.tv_sign_up_link)
     void onClickLink() {
-        startWithPop(new SignUpFragment());
+        getSupportDelegate().startWithPop(new SignUpFragment());
     }
 
     private boolean checkForm() {

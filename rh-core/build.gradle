@@ -49,15 +49,13 @@ dependencies {
     api 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2'
     api 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2'
 
-    //Fragment
+    //Fragment依赖
     api 'me.yokeyword:fragmentation:1.3.6'
-
     // swipeback基于fragmentation,实现滑动边缘退出Fragment/Activity功能 如果是自定制SupportActivity/Fragment，则参照SwipeBackActivity/Fragment实现即可
     api 'me.yokeyword:fragmentation-swipeback:1.3.6'
 
     //butterknife
     api 'com.jakewharton:butterknife:8.8.1'
-
     //想要在library中butterknife，必须在每个library中添加该依赖
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
@@ -77,11 +75,6 @@ dependencies {
     api 'io.reactivex.rxjava2:rxandroid:2.1.0'
     api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
 
-    //轮播图
-    api 'com.bigkoo:ConvenientBanner:2.1.4'
-    //轮播图需要额外导入recyclerview
-    api 'com.android.support:recyclerview-v7:27.1.1'
-
     //JSON依赖Android版
     api 'com.alibaba:fastjson:1.1.70.android'
 
@@ -97,27 +90,11 @@ dependencies {
     //微信依赖（包含统计）
     api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
 
-    //RecycleView Adapter依赖
-    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.38'
-    //RecyclerView 分割线
-    api 'com.choices.divider:RecyclerView_Divider:1.0.0'
-
-    //图片处理
-    api 'com.github.bumptech.glide:glide:4.8.0'
-    api 'com.github.bumptech.glide:okhttp3-integration:4.8.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
-
     //沉浸式状态栏
     api('com.github.niorgai:StatusBarCompat:2.1.4', {
         exclude group: 'com.android.support'
     })
 
-    //google AutoValue
-    compileOnly "com.google.auto.value:auto-value-annotations:1.6.2"
-    annotationProcessor "com.google.auto.value:auto-value:1.6.2"
-
-    /*实现图片圆形化*/
-    api 'de.hdodenhof:circleimageview:2.1.0'
     //图片剪裁
     api 'com.github.yalantis:ucrop:2.2.2-native'
 
